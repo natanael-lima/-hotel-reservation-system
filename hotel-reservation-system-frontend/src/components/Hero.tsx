@@ -3,7 +3,7 @@ import Search from "./Search";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-gray-50 sm:grid sm:grid-cols-2 sm:items-center h-[90%]">
+    <section className="relative overflow-hidden bg-gray-600 sm:grid sm:grid-cols-2 sm:items-center h-[90%]">
       <Search/>
       <div className="p-8 md:p-12 lg:px-6 lg:py-24">
         <div className="mx-auto max-w-xl text-center ltr:sm:text-left rtl:sm:text-right">
