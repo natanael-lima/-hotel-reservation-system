@@ -9,6 +9,10 @@ export default {
         't-primary': '#F7D6CD', // Nuevo color de fondo
         'b-primary': '#F7D6CD', // Ejemplo de nuevo color de texto
       },
+      spacing: {
+        '48': '14rem',  // Puedes ajustar este valor a tus necesidades
+        '80': '22rem',
+      },
       fontSize: {
       '7xl': '8rem', // Añade un nuevo tamaño de fuente
       '8xl': '9rem', // Añade un nuevo tamaño de fuente
