@@ -1,22 +1,153 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 export default function Search() {
+    const [adults, setAdults] = useState(2);
+    const [children, setChildren] = useState(0);
+    const [rooms, setRooms] = useState(1);
+    const [isOpen, setIsOpen] = useState(false);
+  
+    const handleToggle = () => setIsOpen(!isOpen);
   return (
-    <div className="absolute inset-x-0  mx-auto max-w-4xl bg-gray-100 border rounded-md shadow-lg p-4 sm:p-6 bottom-0 w-full z-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {/* Buscador de hoteles */}
-            <div className="flex items-center space-x-2">
-            <input
+    <div className="absolute inset-x-0  mx-auto max-w-4xl bg-gray-100/90 rounded-md shadow-lg p-2 sm:p-3 bottom-1/2 lg:bottom-1/3 w-full z-10 ">
+        {/* Buscador de rooms */}
+        <div className="max-w-7xl mx-auto p-1">
+        <form action="#" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 items-end">
+            <div className="col-span-1">
+                <label htmlFor="FirstName" className="block text-sm font-medium text-gray-700">
+                Location
+                </label>
+
+                <input
                 type="text"
+                id="FirstName"
                 placeholder="Search for hotels..."
-                className="flex-1 rounded-full py-2 px-4 border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-            />
-            <button className="rounded-full px-4 py-2 text-sm font-medium bg-blue-500 text-white hover:bg-blue-600 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                name="first_name"
+                className="mt-1 w-full py-2 px-4 rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                />
+            </div>
+
+            <div className="col-span-1 grid grid-cols-2 gap-2">
+            <div>
+                <label htmlFor="checkin_date" className="block text-sm font-medium text-gray-700">
+                Check-in 
+                </label>
+                <input
+                type="date"
+                id="checkin_date"
+                name="checkin_date"
+                className="mt-1 w-full py-2 px-4 rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                />
+            </div>
+
+            <div>
+                <label htmlFor="checkout_date" className="block text-sm font-medium text-gray-700">
+                Check-out
+                </label>
+                <input
+                type="date"
+                id="checkout_date"
+                name="checkout_date"
+                className="mt-1 w-full py-2 px-4 rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                />
+            </div>
+            </div>
+            <div className="col-span-2 flex items-end justify-between">
+            <div className="relative w-full">
+                <label htmlFor="guests_rooms" className="block text-sm font-medium text-gray-700">
+                Guests and Rooms
+                </label>
+                <button
+                type="button"
+                onClick={handleToggle}
+                className="mt-1 w-90 py-2 px-4 rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm flex justify-between items-center"
+                >
+                <span>{`${adults} Adults, ${children} Children, ${rooms} Rooms`}</span>
+                <svg className="w-5 h-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                </svg>
+                </button>
+                {isOpen && (
+                <div className="absolute z-10 mt-2 w-full py-2 rounded-md border border-gray-300 bg-white shadow-lg">
+                    <div className="p-2">
+                    <div className="flex justify-between items-center mb-2">
+                        <span className="text-xs font-medium text-gray-600">Adults</span>
+                        <div className="flex items-center border border-gray-300 rounded-md">
+                        <button
+                            type="button"
+                            onClick={() => setAdults(adults > 1 ? adults - 1 : 1)}
+                            className="w-8 h-8 flex items-center justify-center text-gray-600 hover:bg-gray-100"
+                        >
+                            -
+                        </button>
+                        <span className="px-4 py-2">{adults}</span>
+                        <button
+                            type="button"
+                            onClick={() => setAdults(adults + 1)}
+                            className="w-8 h-8 flex items-center justify-center text-gray-600 hover:bg-gray-100"
+                        >
+                            +
+                        </button>
+                        </div>
+                    </div>
+
+                    <div className="flex justify-between items-center mb-2">
+                        <span className="text-xs font-medium text-gray-600">Children</span>
+                        <div className="flex items-center border border-gray-300 rounded-md">
+                        <button
+                            type="button"
+                            onClick={() => setChildren(children > 0 ? children - 1 : 0)}
+                            className="w-8 h-8 flex items-center justify-center text-gray-600 hover:bg-gray-100"
+                        >
+                            -
+                        </button>
+                        <span className="px-4 py-2">{children}</span>
+                        <button
+                            type="button"
+                            onClick={() => setChildren(children + 1)}
+                            className="w-8 h-8 flex items-center justify-center text-gray-600 hover:bg-gray-100"
+                        >
+                            +
+                        </button>
+                        </div>
+                    </div>
+
+                    <div className="flex justify-between items-center">
+                        <span className="text-xs font-medium text-gray-600">Rooms</span>
+                        <div className="flex items-center border border-gray-300 rounded-md">
+                        <button
+                            type="button"
+                            onClick={() => setRooms(rooms > 1 ? rooms - 1 : 1)}
+                            className="w-8 h-8 flex items-center justify-center text-gray-600 hover:bg-gray-100"
+                        >
+                            -
+                        </button>
+                        <span className="px-4 py-2">{rooms}</span>
+                        <button
+                            type="button"
+                            onClick={() => setRooms(rooms + 1)}
+                            className="w-8 h-8 flex items-center justify-center text-gray-600 hover:bg-gray-100"
+                        >
+                            +
+                        </button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                )}
+            </div>
+            <button className="shrink-0 rounded-md border border-orange-600 bg-orange-600 px-16 py-2 text-sm font-medium text-white transition hover:bg-transparent hover:text-orange-600 focus:outline-none focus:ring active:text-blue-500">
                 Search
             </button>
             </div>
 
-            {/* Filtros */}
+                
+
+                     
+            </form>        
+
+            
+
+            {/* Filtros 
             <div className="flex items-center justify-end space-x-2">
             <div className="relative">
                 <button className="rounded-full px-4 py-2 text-sm font-medium bg-white border border-gray-300 flex items-center space-x-2 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 focus:outline-none">
@@ -55,7 +186,7 @@ export default function Search() {
                 </label>
                 </div>
             </div>
-            </div>
+            </div>*/}
         </div>
         </div>
 
