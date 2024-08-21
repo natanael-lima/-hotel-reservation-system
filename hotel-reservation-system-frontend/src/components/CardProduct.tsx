@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function CardProduct() {
   return (
@@ -24,9 +25,9 @@ export default function CardProduct() {
                 <span>Madrid</span>
             </div>
             <div className="mt-4 md:mt-8 ">
-                <a href="#" className="inline-block w-full text-center rounded-lg bg-orange-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-orange-700 focus:outline-none focus:ring focus:ring-yellow-400">
-                 Ver Disponiblidad
-                </a>
+                <Link to="/productDetail" className="inline-block w-full text-center rounded-lg bg-orange-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-orange-700 focus:outline-none focus:ring focus:ring-yellow-400">
+                Ver Disponiblidad
+                </Link>
             </div>
         </div>            
     </div>
