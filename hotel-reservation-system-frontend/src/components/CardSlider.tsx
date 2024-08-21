@@ -10,13 +10,15 @@ interface CardProps {
   }
 
 export default function CardSlider({ title, price, location, description, imageUrl }: CardProps) {
+ 
+
   return (
     <div className="w-full max-w-sm bg-white rounded-lg shadow-md  overflow-hidden mx-2">
         <a href="">
             <img
             src={imageUrl}
             alt="Hotel Image"
-            className="object-cover rounded-t-lg w-full aspect-[2/2]"
+            className="object-cover rounded-t-lg w-full aspect-[2/2]  "
         />
         <div className="p-4 space-y-4">
             <div className="flex items-center justify-between">

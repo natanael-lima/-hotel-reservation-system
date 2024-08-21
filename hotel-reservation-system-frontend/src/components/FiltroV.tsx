@@ -1,140 +1,338 @@
 
+const provinces = [
+  "Buenos Aires", "Catamarca", "Chaco", "Chubut", "Córdoba", "Corrientes", "Entre Ríos", 
+  "Formosa", "Jujuy", "La Pampa", "La Rioja", "Mendoza", "Misiones", "Neuquén", 
+  "Río Negro", "Salta", "San Juan", "San Luis", "Santa Cruz", "Santa Fe", 
+  "Santiago del Estero", "Tierra del Fuego", "Tucumán"
+];
+
 export default function FiltroV() {
   return (
-    <aside className="sticky top-0 w-full md:w-1/4 p-6 bg-white shadow-lg rounded-lg h-screen overflow-y-auto">
-      <h2 className="text-2xl font-bold mb-6 text-gray-800">Filtrar por</h2>
+    
+    <aside className="sticky top-0 w-full md:w-1/1 p-6 bg-white shadow-lg h-screen overflow-y-auto">
+      <h2 className="text-2xl font-bold mb-6 text-gray-800">Filter by</h2>
 
       <form className="space-y-8">
-        {/* Filtros que ya has usado */}
-        <div className="mb-8 text-gray-400">
-          <h3 className="text-lg font-semibold text-gray-700 mb-4">Filtros que ya has usado</h3>
-          <ul className="space-y-4">
-            <li className="flex items-center">
-              <input
-                type="checkbox"
-                id="casas-chalets"
-                className="mr-2"
-              />
-              <label htmlFor="casas-chalets" className="flex-1 text-gray-700">Casas y chalets</label>
-              <span className="text-gray-500">1</span>
-            </li>
-            <li className="flex items-center">
-              <input
-                type="checkbox"
-                id="habitaciones-casas"
-                className="mr-2"
-              />
-              <label htmlFor="habitaciones-casas" className="flex-1 text-gray-700">Habitaciones en casas particulares</label>
-              <span className="text-gray-500">11</span>
-            </li>
-            <li className="flex items-center">
-              <input
-                type="checkbox"
-                id="apartamentos"
-                className="mr-2"
-              />
-              <label htmlFor="apartamentos" className="flex-1 text-gray-700">Apartamentos</label>
-              <span className="text-gray-500">418</span>
-            </li>
-          </ul>
+        
+        {/* Rango de Presupuesto */}
+        {/* Filtros para fecha */}
+        {/* Filtros Rooms and Guest */}
+       
+        
+        <div className="mt-8 block lg:hidden">
+          <button
+            className="flex cursor-pointer items-center gap-2 border-b border-gray-400 pb-1 text-gray-900 transition hover:border-gray-600"
+          >
+            <span className="text-sm font-medium"> Filters & Sorting </span>
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              className="size-4 rtl:rotate-180"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+            </svg>
+          </button>
         </div>
 
-        {/* Rango de Presupuesto */}
-        <div className="mb-8">
-          <h3 className="text-lg font-semibold text-gray-700 mb-4">Tu presupuesto (por noche)</h3>
-          <div className="flex items-center">
-            <input
-              type="number"
-              placeholder="$ 20.000"
-              className="w-1/2 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            <span className="mx-2 text-gray-500">-</span>
-            <input
-              type="number"
-              placeholder="$ 300.000+"
-              className="w-1/2 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
+          <div className="hidden space-y-4 lg:block">
+              {/* Filtros provincias */}
+              <div>
+                 <label htmlFor="province" className="block text-xs font-medium text-gray-700"> Search by location </label>
+                <select
+                  id="province"
+                  className="mt-2 rounded border-gray-300 text-sm border p-2 pr-5"
+                >
+                  <option value="">Selecciona una provincia</option>
+                  {provinces.map((province) => (
+                    <option key={province} value={province}>
+                      {province}
+                    </option>
+                  ))}
+                </select>       
+         
+              </div>
+          <div>
+          
+          <p className="block text-xs font-medium text-gray-700">Filters</p>
+          <div className="mt-1 space-y-2">
+
+          {/* Filtros para fecha */}
+          <details
+              className="overflow-hidden rounded border border-gray-300 [&_summary::-webkit-details-marker]:hidden"
+            >
+              <summary
+                className="flex cursor-pointer items-center justify-between gap-2 p-4 text-gray-900 transition"
+              >
+                <span className="text-sm font-medium"> Check-in & Check-out </span>
+
+                <span className="transition group-open:-rotate-180">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    className="size-4"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+                    />
+                  </svg>
+                </span>
+              </summary>
+
+              <div className="border-t border-gray-200 bg-white">
+                <header className="flex items-center justify-between p-4">
+                  <span className="text-sm text-gray-700"> The highest price is $600 </span>
+
+                  <button type="button" className="text-sm text-gray-900 underline underline-offset-4">
+                    Reset
+                  </button>
+                </header>
+
+                <div className="border-t border-gray-200 p-4">
+                  
+                  <div className="flex justify-between gap-4">
+                    <label htmlFor="FilterPriceFrom" className="flex items-center gap-2">
+                      <span className="text-sm text-gray-600">From</span>
+
+                      <input
+                        type="date"
+                        id="FilterPriceFrom"
+                        placeholder="From"
+                        className="w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+                      />
+                    </label>
+
+                    <label htmlFor="FilterPriceTo" className="flex items-center gap-2">
+                      <span className="text-sm text-gray-600">To</span>
+
+                      <input
+                        type="date"
+                        id="FilterPriceTo"
+                        placeholder="To"
+                        className="w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+                      />
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </details>
+
+
+            <details
+              className="overflow-hidden rounded border border-gray-300 [&_summary::-webkit-details-marker]:hidden"
+            >
+              <summary
+                className="flex cursor-pointer items-center justify-between gap-2 p-4 text-gray-900 transition"
+              >
+                <span className="text-sm font-medium"> Availability </span>
+
+                <span className="transition group-open:-rotate-180">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    className="size-4"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+                    />
+                  </svg>
+                </span>
+              </summary>
+
+              <div className="border-t border-gray-200 bg-white">
+                <header className="flex items-center justify-between p-4">
+                  <span className="text-sm text-gray-700"> 0 Selected </span>
+
+                  <button type="button" className="text-sm text-gray-900 underline underline-offset-4">
+                    Reset
+                  </button>
+                </header>
+
+                <ul className="space-y-1 border-t border-gray-200 p-4">
+                  <li>
+                    <label htmlFor="FilterInStock" className="inline-flex items-center gap-2">
+                      <input
+                        type="checkbox"
+                        id="FilterInStock"
+                        className="size-5 rounded border-gray-300"
+                      />
+
+                      <span className="text-sm font-medium text-gray-700"> In Stock (5+) </span>
+                    </label>
+                  </li>
+
+                  <li>
+                    <label htmlFor="FilterPreOrder" className="inline-flex items-center gap-2">
+                      <input
+                        type="checkbox"
+                        id="FilterPreOrder"
+                        className="size-5 rounded border-gray-300"
+                      />
+
+                      <span className="text-sm font-medium text-gray-700"> Pre Order (3+) </span>
+                    </label>
+                  </li>
+
+                  <li>
+                    <label htmlFor="FilterOutOfStock" className="inline-flex items-center gap-2">
+                      <input
+                        type="checkbox"
+                        id="FilterOutOfStock"
+                        className="size-5 rounded border-gray-300"
+                      />
+
+                      <span className="text-sm font-medium text-gray-700"> Out of Stock (10+) </span>
+                    </label>
+                  </li>
+                </ul>
+              </div>
+            </details>
+
+            <details
+              className="overflow-hidden rounded border border-gray-300 [&_summary::-webkit-details-marker]:hidden"
+            >
+              <summary
+                className="flex cursor-pointer items-center justify-between gap-2 p-4 text-gray-900 transition"
+              >
+                <span className="text-sm font-medium"> Price (per night)  </span>
+
+                <span className="transition group-open:-rotate-180">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    className="size-4"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+                    />
+                  </svg>
+                </span>
+              </summary>
+
+              <div className="border-t border-gray-200 bg-white">
+                <header className="flex items-center justify-between p-4">
+                  <span className="text-sm text-gray-700"> The highest price is $600 </span>
+
+                  <button type="button" className="text-sm text-gray-900 underline underline-offset-4">
+                    Reset
+                  </button>
+                </header>
+
+                <div className="border-t border-gray-200 p-4">
+                  <div className="flex justify-between gap-4">
+                    <label htmlFor="FilterPriceFrom" className="flex items-center gap-2">
+                      <span className="text-sm text-gray-600">$</span>
+
+                      <input
+                        type="number"
+                        id="FilterPriceFrom"
+                        placeholder="From"
+                        className="w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+                      />
+                    </label>
+
+                    <label htmlFor="FilterPriceTo" className="flex items-center gap-2">
+                      <span className="text-sm text-gray-600">$</span>
+
+                      <input
+                        type="number"
+                        id="FilterPriceTo"
+                        placeholder="To"
+                        className="w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+                      />
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </details>
+
+            <details
+              className="overflow-hidden rounded border border-gray-300 [&_summary::-webkit-details-marker]:hidden"
+            >
+              <summary
+                className="flex cursor-pointer items-center justify-between gap-2 p-4 text-gray-900 transition"
+              >
+                <span className="text-sm font-medium"> Guests & Rooms </span>
+
+                <span className="transition group-open:-rotate-180">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    className="size-4"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+                    />
+                  </svg>
+                </span>
+              </summary>
+
+              <div className="border-t border-gray-200 bg-white">
+                <header className="flex items-center justify-between p-4">
+                  <span className="text-sm text-gray-700"> 0 Selected </span>
+
+                  <button type="button" className="text-sm text-gray-900 underline underline-offset-4">
+                    Reset
+                  </button>
+                </header>
+
+                <div className="border-t border-gray-200 p-4">
+                  <div className="flex justify-between gap-4">
+                    <label htmlFor="FilterPriceFrom" className="flex items-center gap-2">
+                      <span className="text-sm text-gray-600">Rooms</span>
+
+                      <input
+                        type="number"
+                        id="FilterPriceFrom"
+                        placeholder="Rooms"
+                        min="1"
+                       
+                        className="w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+                      />
+                    </label>
+
+                    <label htmlFor="FilterPriceTo" className="flex items-center gap-2">
+                      <span className="text-sm text-gray-600">Guests</span>
+
+                      <input
+                        type="number"
+                        id="FilterPriceTo"
+                        placeholder="Guests"
+                        min="1"
+      
+                        className="w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+                      />
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </details>
           </div>
         </div>
-
-        {/* Filtros Populares */}
-        <div className="mb-8 text-gray-400">
-          <h3 className="text-lg font-semibold text-gray-700 mb-4">Filtros populares para esta zona</h3>
-          <ul className="space-y-4">
-            <li className="flex items-center">
-              <input
-                type="checkbox"
-                id="hoteles"
-                className="mr-2"
-              />
-              <label htmlFor="hoteles" className="flex-1 text-gray-700">Hoteles</label>
-              <span className="text-gray-500">347</span>
-            </li>
-            <li className="flex items-center">
-              <input
-                type="checkbox"
-                id="fantastico"
-                className="mr-2"
-              />
-              <label htmlFor="fantastico" className="flex-1 text-gray-700">Fantástico: 9 o más</label>
-              <span className="text-gray-500">143</span>
-            </li>
-            <li className="flex items-center">
-              <input
-                type="checkbox"
-                id="comentarios"
-                className="mr-2"
-              />
-              <label htmlFor="comentarios" className="flex-1 text-gray-700">Según los comentarios de los clientes</label>
-              <span className="text-gray-500">479</span>
-            </li>
-            <li className="flex items-center">
-              <input
-                type="checkbox"
-                id="wifi"
-                className="mr-2"
-              />
-              <label htmlFor="wifi" className="flex-1 text-gray-700">WiFi gratis</label>
-              <span className="text-gray-500">1010</span>
-            </li>
-            <li className="flex items-center">
-              <input
-                type="checkbox"
-                id="reservas-tarjeta"
-                className="mr-2"
-              />
-              <label htmlFor="reservas-tarjeta" className="flex-1 text-gray-700">Reservas sin tarjeta de crédito</label>
-              <span className="text-gray-500">1</span>
-            </li>
-            <li className="flex items-center">
-              <input
-                type="checkbox"
-                id="parking"
-                className="mr-2"
-              />
-              <label htmlFor="parking" className="flex-1 text-gray-700">Parking</label>
-              <span className="text-gray-500">410</span>
-            </li>
-            <li className="flex items-center">
-              <input
-                type="checkbox"
-                id="3-estrellas"
-                className="mr-2"
-              />
-              <label htmlFor="3-estrellas" className="flex-1 text-gray-700">3 estrellas</label>
-              <span className="text-gray-500">455</span>
-            </li>
-            <li className="flex items-center">
-              <input
-                type="checkbox"
-                id="bano-privado"
-                className="mr-2"
-              />
-              <label htmlFor="bano-privado" className="flex-1 text-gray-700">Baño privado</label>
-              <span className="text-gray-500">881</span>
-            </li>
-          </ul>
-        </div>
+      </div>
 
         {/* Botón de Aplicar Filtros */}
         <div className="flex justify-center mt-6">
