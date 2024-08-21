@@ -9,16 +9,9 @@ const provinces = [
 export default function FiltroV() {
   return (
     
-    <aside className="sticky top-0 w-full md:w-1/1 p-6 bg-white shadow-lg h-screen overflow-y-auto">
+    <aside className="">
       <h2 className="text-2xl font-bold mb-6 text-gray-800">Filter by</h2>
-
       <form className="space-y-8">
-        
-        {/* Rango de Presupuesto */}
-        {/* Filtros para fecha */}
-        {/* Filtros Rooms and Guest */}
-       
-        
         <div className="mt-8 block lg:hidden">
           <button
             className="flex cursor-pointer items-center gap-2 border-b border-gray-400 pb-1 text-gray-900 transition hover:border-gray-600"
@@ -60,7 +53,7 @@ export default function FiltroV() {
           <p className="block text-xs font-medium text-gray-700">Filters</p>
           <div className="mt-1 space-y-2">
 
-          {/* Filtros para fecha */}
+           {/* Filtros para fecha */}
           <details
               className="overflow-hidden rounded border border-gray-300 [&_summary::-webkit-details-marker]:hidden"
             >
@@ -200,7 +193,7 @@ export default function FiltroV() {
                 </ul>
               </div>
             </details>
-
+            {/* Rango de Presupuesto */}
             <details
               className="overflow-hidden rounded border border-gray-300 [&_summary::-webkit-details-marker]:hidden"
             >
@@ -263,7 +256,7 @@ export default function FiltroV() {
                 </div>
               </div>
             </details>
-
+          {/* Filtros Rooms and Guest */}
             <details
               className="overflow-hidden rounded border border-gray-300 [&_summary::-webkit-details-marker]:hidden"
             >
