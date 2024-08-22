@@ -1,3 +1,4 @@
+import Button from "./Button";
 import Search from "./Search";
 
 export default function Hero() {
@@ -5,7 +6,7 @@ export default function Hero() {
       <section
         className="overflow-hidden bg-[url(https://www.onvacation.com/portals/1080/img/about-us/mision.png)] bg-cover bg-top bg-no-repeat">
           <Search/>
-        <div className="bg-black/60 p-8 md:p-12 lg:px-16 lg:py-28">
+        <div className="bg-black/70 p-8 md:p-12 lg:px-16 lg:py-28">
           <div className="mx-auto max-w-xl text-center ltr:sm:text-left rtl:sm:text-right">
             <h1 className="text-6xl font-bold text-orange-500 lg:text-7xl md:text-4xl mt-10 lg:mt-16">
               HOTEL  
@@ -21,9 +22,7 @@ export default function Hero() {
             </p>
       
             <div className="mt-4 md:mt-8">
-              <a href="#" className="inline-block rounded-lg bg-orange-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-orange-700 focus:outline-none focus:ring focus:ring-yellow-400">
-                Explore Hotels
-              </a>
+              <Button content="Explore Hotels" className="px-12 py-3"/>
             </div>
           </div>
         </div>
