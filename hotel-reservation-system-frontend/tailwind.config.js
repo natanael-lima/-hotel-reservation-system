@@ -14,8 +14,8 @@ export default {
         '80': '22rem',
       },
       fontSize: {
-      '7xl': '8rem', // Añade un nuevo tamaño de fuente
-      '8xl': '9rem', // Añade un nuevo tamaño de fuente
+      '7xl': '7rem', // Añade un nuevo tamaño de fuente
+      '8xl': '8rem', // Añade un nuevo tamaño de fuente
       '9xl': '10rem', // Añade un nuevo tamaño de fuente
      
     },},
