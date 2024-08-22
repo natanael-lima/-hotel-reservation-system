@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+import ButtonBorder from './ButtonBorder';
 
 export default function Search() {
     const [adults, setAdults] = useState(2);
@@ -135,14 +136,8 @@ export default function Search() {
                 </div>
                 )}
             </div>
-            <button className="shrink-0 rounded-md border border-orange-600 bg-orange-600 px-16 py-2 text-sm font-medium text-white transition hover:bg-transparent hover:text-orange-600 focus:outline-none focus:ring active:text-blue-500">
-                Search
-            </button>
-            </div>
-
-                
-
-                     
+            <ButtonBorder content='Search'/>
+            </div>        
             </form>        
 
             

@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom'; // Importa Link
+import Button from './Button';
+import ButtonSecondary from './ButtonSecondary';
 
 export default function Header() {
   return (
@@ -36,19 +38,9 @@ export default function Header() {
 
       <div className="flex items-center gap-4">
         <div className="sm:flex sm:gap-4">
-          <a
-            className="block rounded-lg bg-orange-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-orange-700"
-            href="#"
-          >
-            Login
-          </a>
+          <Button content='Login'/>
 
-          <a
-            className="hidden rounded-lg bg-orange-100 px-5 py-2.5 text-sm font-medium text-orange-600 transition hover:text-orange-700/55  sm:block"
-            href="#"
-          >
-            Register
-          </a>
+         <ButtonSecondary content='Register'/>
         </div>
 
         <button
