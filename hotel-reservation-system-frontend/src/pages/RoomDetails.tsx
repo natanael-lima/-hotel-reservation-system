@@ -11,7 +11,6 @@ export default function RoomDetails() {
         <HeaderBanner/>
         <main className='flex'>
             <RoomDetailComponent/>
-            
         </main>
         <RoomDetailPlus/>
 
