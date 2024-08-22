@@ -70,6 +70,13 @@ Para clonar este repositorio y comenzar a trabajar con el sistema de reservas de
      cd backend
      ./mvnw spring-boot:run
      ```
+## Vista Previa Diagrama
+
+Puedes ver una vista del Diagrama de Entidad-Relación (ER o MER). [![db-hotel.png](https://i.postimg.cc/CMbTmSvT/db-hotel.png)](https://postimg.cc/Lh4bsKKN)
+
+## Vista Previa
+
+Puedes ver una vista previa del proyecto. [![project-hotel-system.jpg](https://i.postimg.cc/yx8G1Czn/project-hotel-system.jpg)](https://postimg.cc/hzNsswv7)
 
 Con estos pasos, deberías estar listo para empezar a trabajar con la aplicación de reservas de hoteles. Si tienes alguna pregunta o encuentras algún problema, consulta la documentación del proyecto o contacta con el equipo de soporte.
 
