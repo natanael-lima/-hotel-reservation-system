@@ -1,30 +1,71 @@
 import { useState } from 'react'
 import ButtonBorder from './ButtonBorder';
 
+// Definir provincias con el tipo string[]
+const provinces: string[] = [
+    "Buenos Aires", "Catamarca", "Chaco", "Chubut", "Córdoba", "Corrientes", 
+    "Entre Ríos", "Formosa", "Jujuy", "La Pampa", "La Rioja", "Mendoza", 
+    "Misiones", "Neuquén", "Río Negro", "Salta", "San Juan", "San Luis", 
+    "Santa Cruz", "Santa Fe", "Santiago del Estero", "Tierra del Fuego", "Tucumán"
+];
+
+
 export default function Search() {
     const [adults, setAdults] = useState(2);
     const [children, setChildren] = useState(0);
     const [rooms, setRooms] = useState(1);
     const [isOpen, setIsOpen] = useState(false);
-  
     const handleToggle = () => setIsOpen(!isOpen);
+
+    const [query, setQuery] = useState("");
+    const [suggestions, setSuggestions] = useState([]);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        setQuery(value);
+        setSuggestions(
+            provinces.filter(province =>
+                province.toLowerCase().startsWith(value.toLowerCase())
+            )
+        );
+    };
+
+    const handleSuggestionClick = (suggestion: string) => {
+        setQuery(suggestion);
+        setSuggestions([]);
+    };
+
   return (
     <div className="absolute inset-x-0  mx-auto max-w-4xl bg-gray-100/90 rounded-md shadow-lg p-2 sm:p-3 bottom-1/2 lg:bottom-1/3 w-full z-10 ">
         {/* Buscador de rooms */}
         <div className="max-w-7xl mx-auto p-1">
         <form action="#" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 items-end">
             <div className="col-span-1">
-                <label htmlFor="FirstName" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="Location" className="block text-sm font-medium text-gray-700">
                 Location
                 </label>
-
                 <input
-                type="text"
-                id="FirstName"
-                placeholder="Search for hotels..."
-                name="first_name"
-                className="mt-1 w-full py-2 px-4 rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                    type="text"
+                    id="Location"
+                    placeholder="Search for provinces..."
+                    name="location"
+                    value={query}
+                    onChange={handleChange}
+                    className="mt-1 w-full py-2 px-4 rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                 />
+                {suggestions.length > 0 && (
+                    <ul className="absolute bg-white border border-gray-200 mt-1 w-60 rounded-md shadow-lg max-h-60 overflow-y-auto z-10">
+                        {suggestions.map((suggestion, index) => (
+                            <li
+                                key={index}
+                                onClick={() => handleSuggestionClick(suggestion)}
+                                className="cursor-pointer px-4 py-2 hover:bg-gray-100"
+                            >
+                                {suggestion}
+                            </li>
+                        ))}
+                    </ul>
+                )}
             </div>
 
             <div className="col-span-1 grid grid-cols-2 gap-2">

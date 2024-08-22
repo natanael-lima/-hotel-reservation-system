@@ -14,13 +14,11 @@ const places = [
   ];
 export default function SliderPlace() {
     const [currentIndex, setCurrentIndex] = useState(0);
-
     const nextSlide = () => {
       if (currentIndex < places.length - 6) {
         setCurrentIndex(currentIndex + 1);
       }
     };
-  
     const prevSlide = () => {
       if (currentIndex > 0) {
         setCurrentIndex(currentIndex - 1);
@@ -32,54 +30,55 @@ export default function SliderPlace() {
     : window.innerWidth >= 768
     ? 4
     : 2;
+
   return (
     <div className="relative w-full overflow-hidden">
         {/* Título */}
         <div className="text-center mb-6 mt-5">
-          <h1 className="text-2xl font-bold text-gray-800 md:text-4xl">
-            Descubre Argentina
+          <h1 className="text-2xl font-bold text-gray-800 md:text-3xl">
+            Discover Argentina
           </h1>
         </div>
         {/* Cards */}
-    <div className="flex">
-      {places.slice(currentIndex, currentIndex + visibleCount).map((place) => (
-        <a href='https://www.booking.com/index.es-ar.html' key={place.id} className={`w-${Math.floor(100 / visibleCount)}% p-5`}>
-          <div className="bg-white rounded-lg shadow-lg">
-            <img
-              src={place.image}
-              alt={place.province}
-              className="w-64 h-32 object-cover rounded-t-lg"
-            />
-            <div className="p-4">
-              <h3 className="text-lg font-semibold">{place.province}</h3>
-              <p className="text-sm text-gray-600">
-                Disponibilidad: {place.availability}
-              </p>
+      <div className="flex">
+        {places.slice(currentIndex, currentIndex + visibleCount).map((place) => (
+          <a href='https://www.booking.com/index.es-ar.html' key={place.id} className={`w-${Math.floor(100 / visibleCount)}% p-5`}>
+            <div className="bg-white rounded-lg shadow-md">
+              <img
+                src={place.image}
+                alt={place.province}
+                className="w-64 h-32 object-cover rounded-t-lg"
+              />
+              <div className="p-4">
+                <h3 className="text-lg font-semibold">{place.province}</h3>
+                <p className="text-sm text-gray-600">
+                  Disponibilidad: {place.availability}
+                </p>
+              </div>
             </div>
-          </div>
-        </a>
-      ))}
-    </div>
+          </a>
+        ))}
+      </div>
 
-    <button
-      className="flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md text-gray-800 hover:bg-gray-100 focus:outline-none absolute border lg:left-0 top-1/2 transform -translate-y-1/6 z-10"
-      onClick={prevSlide}
-      disabled={currentIndex === 0}
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-caret-left-fill" viewBox="0 0 16 16">
-              <path d="M3.86 8.753l5.482-4.796c.646-.566 1.658-.106 1.658.753v9.592a1 1 0 0 1-1.658.753l-5.48-4.796a1 1 0 0 1 0-1.506z"/>
+      <button
+        className="flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md text-gray-800 hover:bg-gray-200 focus:outline-none absolute border left-0 lg:left-0 top-1/2 transform -translate-y-1/6 z-10"
+        onClick={prevSlide}
+        disabled={currentIndex === 0}
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                <path d="M3.86 8.753l5.482-4.796c.646-.566 1.658-.106 1.658.753v9.592a1 1 0 0 1-1.658.753l-5.48-4.796a1 1 0 0 1 0-1.506z"/>
+              </svg>
+      </button>
+
+      <button
+        className="flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md text-gray-800 hover:bg-gray-200 focus:outline-none absolute border right-0 lg:right-0 top-1/2 transform -translate-y-1/6 z-10"
+        onClick={nextSlide}
+        disabled={currentIndex === places.length - 6}
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-caret-right-fill" viewBox="0 0 16 16">
+              <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
             </svg>
-    </button>
-
-    <button
-      className="flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md text-gray-800 hover:bg-gray-100 focus:outline-none absolute lg:right-0 top-1/2 transform -translate-y-1/6 z-10"
-      onClick={nextSlide}
-      disabled={currentIndex === places.length - 6}
-    >
-       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-caret-right-fill" viewBox="0 0 16 16">
-            <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
-          </svg>
-    </button>
+      </button>
   </div>
   )
 }

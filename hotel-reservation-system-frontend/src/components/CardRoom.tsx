@@ -1,9 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Button from './Button'
 
 export default function CardProduct() {
   return (
-    <div className="relative overflow-hidden rounded-lg shadow-lg group hover:shadow-xl hover:-translate-y-2 transition-transform duration-300 ease-in-out bg-white">
+    <div className="relative overflow-hidden rounded-lg shadow-md group hover:shadow-xl hover:-translate-y-2 transition-transform duration-300 ease-in-out bg-white">
         <img
             src="https://img.freepik.com/foto-gratis/suite-dormitorio-moderno-clasico-lujo-hotel_105762-1787.jpg"
             alt="Hotel 1"
@@ -25,8 +26,8 @@ export default function CardProduct() {
                 <span>Madrid</span>
             </div>
             <div className="mt-4 md:mt-8 ">
-                <Link to="/productDetail" className="inline-block w-full text-center rounded-lg bg-orange-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-orange-700 focus:outline-none focus:ring focus:ring-yellow-400">
-                Ver Disponiblidad
+                <Link to="/productDetail" >
+                  <Button content="See Availability" className={'inline-block w-full px-12 py-3 text-center'}/>
                 </Link>
             </div>
         </div>            
