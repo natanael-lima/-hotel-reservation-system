@@ -38,11 +38,11 @@ export default function Header() {
 
       <div className="flex items-center gap-4">
         <div className="sm:flex sm:gap-4">
-          <Button content='Login'/>
+          <Button content='Login' className={''} />
 
-         <ButtonSecondary content='Register'/>
+          <ButtonSecondary content='Register' className={'hidden sm:block'}/>
         </div>
-
+        
         <button
           className="block rounded bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 md:hidden"
         >

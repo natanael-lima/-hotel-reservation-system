@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from './Button'
 
 export default function RoomDetailComponent() {
   return (
@@ -100,9 +101,7 @@ export default function RoomDetailComponent() {
             </div>
         </div>
         <div className="col-span-1 md:col-span-3 mt-4">
-            <button className='w-full inline-block rounded-lg bg-orange-600 px-6 py-2 text-sm font-medium text-white transition hover:bg-orange-700 focus:outline-none focus:ring focus:ring-yellow-400'>
-            Reserve
-            </button>
+            <Button content="Reserve" className={'w-full text-center'}/>
         </div>
       </div>
     </section>
