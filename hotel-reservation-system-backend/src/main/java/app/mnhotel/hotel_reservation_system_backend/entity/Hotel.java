@@ -41,6 +41,6 @@ public class Hotel {
  	@JsonIgnoreProperties
     private List<Room> rooms;
 	
-	 @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	    private List<Review> reviews;
+	@OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Review> reviews;
 }

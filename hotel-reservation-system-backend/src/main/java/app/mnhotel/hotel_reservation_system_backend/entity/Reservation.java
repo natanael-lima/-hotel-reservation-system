@@ -31,16 +31,16 @@ public class Reservation {
     private Long id;
 	
 	@Column(name="start_date")
-	private LocalDateTime start_date;
+	private LocalDateTime startDate;
 	
 	@Column(name="end_date")
-	private LocalDateTime end_date;
+	private LocalDateTime endDate;
 	
 	@Column(name="status")
 	private String status;
 	
 	@Column(name="created_at")
-	private LocalDateTime created_at;
+	private LocalDateTime createdAt;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")

@@ -27,18 +27,17 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "reservation_id")
- 	@JsonBackReference
- 	private Reservation reservation;
-	
 	@Column(name="amount")
 	private Integer amount;
 	
 	@Column(name="payment_date")
-	private LocalDateTime payment_date;
+	private LocalDateTime paymentDate;
 	
 	@Column(name="status")
 	private String status;
-	
+
+	@ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "reservation_id")
+ 	@JsonBackReference
+ 	private Reservation reservation;
 }

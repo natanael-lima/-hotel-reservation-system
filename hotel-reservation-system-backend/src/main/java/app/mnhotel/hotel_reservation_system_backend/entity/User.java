@@ -20,19 +20,19 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(name="username")
-    private String usarname;
+    @Column(name="username", unique = true, nullable = false)
+    private String username;
     
     @Column(name="password")
     private String password;
     
-    @Column(name="email")
+    @Column(name="email", unique = true, nullable = false)
     private String email;
     
     @Column(name="created_at")
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
     
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Reservation> reservations;
     

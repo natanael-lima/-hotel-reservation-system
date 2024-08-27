@@ -32,7 +32,7 @@ public class Review {
 	private String comment;
 	
 	@Column(name="created_at")
-	private LocalDateTime created_at;
+	private LocalDateTime createdAt;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")

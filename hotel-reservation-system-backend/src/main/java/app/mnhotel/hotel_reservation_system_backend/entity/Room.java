@@ -30,13 +30,13 @@ public class Room {
  	private Hotel hotel;
 	
 	@Column(name="room_number")
-    private String room_number;
+    private String roomNumber;
 	
 	@Column(name="type")
 	private String type;
 	
 	@Column(name="price_per_night")
-	private Integer price_per_night;
+	private Integer pricePerNight;
 	
 	@Column(name="availbility")
 	private Boolean availbility;
