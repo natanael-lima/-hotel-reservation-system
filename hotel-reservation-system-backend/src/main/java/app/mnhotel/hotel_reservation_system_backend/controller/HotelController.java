@@ -20,7 +20,7 @@ public class HotelController {
 	@Autowired
     private HotelService hotelService;
 	
-	// API para obtener todo
+	// API para obtener todos los hoteles.
     @GetMapping("/get-all")
     public ResponseEntity<List<Hotel>> findAllHotel() throws Exception {
         try {
