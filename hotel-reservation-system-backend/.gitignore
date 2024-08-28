@@ -34,4 +34,4 @@ build/
 
 # Ignorar archivos de configuración
 /src/main/resources/application.properties
-
+.env
