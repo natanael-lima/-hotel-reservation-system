@@ -3,6 +3,7 @@ package app.mnhotel.hotel_reservation_system_backend.controller;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,15 +22,20 @@ public class HotelController {
     private HotelService hotelService;
 	
 	// API para obtener todos los hoteles.
-    @GetMapping("/get-all")
-    public ResponseEntity<List<Hotel>> findAllHotel() throws Exception {
-        try {
-        	List<Hotel> hotelAll = hotelService.getAllHotel();
-            return ResponseEntity.ok(hotelAll);
-        } catch (RuntimeException e) {
-            return ResponseEntity.noContent().build(); 
-        }
-    }
+	@GetMapping("/get-all")
+	public ResponseEntity<List<Hotel>> findAllHotel() {
+	    try {
+	        List<Hotel> hotelAll = hotelService.getAllHotel();
+	        if (hotelAll.isEmpty()) {
+	            return ResponseEntity.noContent().build();
+	        }
+	        return ResponseEntity.ok(hotelAll);
+	    } catch (Exception e) {
+	        e.printStackTrace(); // Para depuración
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+	    }
+	}
+
 	
 	// API para obtener un producto by ID.
     @GetMapping("/get-hotel/{id}")
