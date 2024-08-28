@@ -4,7 +4,7 @@ import CardHotelSlider from './CardHotelSlider'
 const cards = [
   {
     id: 1,
-    title: 'San Salvador de Jujuy',
+    title: 'Jujuy',
     price: '$ 49.921',
     location: '220 West 41st Street',
     description: 'Luxurious hotel with stunning views and world-class amenities.',
