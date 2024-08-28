@@ -19,7 +19,8 @@ public class HotelController {
 
 	@Autowired
     private HotelService hotelService;
-
+	
+	// API para obtener todo
     @GetMapping("/get-all")
     public ResponseEntity<List<Hotel>> findAllHotel() throws Exception {
         try {
