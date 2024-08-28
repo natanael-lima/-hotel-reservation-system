@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import CardSlider from './CardSlider'
+import CardHotelSlider from './CardHotelSlider'
 
 const cards = [
   {
@@ -28,7 +28,7 @@ const cards = [
   },
   {
     id: 4,
-    title: 'Cordoba',
+    title: 'Neuquen',
     price: '$ 100.921',
     location: '220 West 41st Street',
     description: 'Elegant hotel with top-notch service and cityscape.',
@@ -54,57 +54,39 @@ const cards = [
 
 export default function SliderHotels() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  /*const itemsToShow = window.innerWidth < 768 ? 1 : 3; // Muestra una tarjeta en dispositivos móviles y dos en pantallas grandes
-  
-  // Función para ir al siguiente conjunto de productos
-  const goToNext = () => {
-    if (currentIndex < cards.length - 2) {
-      setCurrentIndex(prevIndex => prevIndex + 1);
-    }
-  };
-
-  // Función para ir al conjunto de productos anterior
-  const goToPrev = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(prevIndex => prevIndex - 1);
-    }
-  };
-   // Ajusta el estilo del contenedor y los productos
-  const containerStyle = {
-    transform: `translateX(-${(100 / itemsToShow) * currentIndex}%)`,
-    transition: 'transform 0.5s ease-in-out',
-  };
-  */
-
   const handlePrev = () => {
     setCurrentIndex((prevIndex:number) =>
       prevIndex === 0 ? cards.length - 4 : prevIndex - 1
     );
   };
-
   const handleNext = () => {
     setCurrentIndex((prevIndex:number) =>
       prevIndex === cards.length - 4 ? 0 : prevIndex + 1
     );
   };
+  // Calcular la cantidad de elementos visibles según el tamaño de la pantalla
+  const visibleCount = window.innerWidth >= 1024
+  ? 4
+  : window.innerWidth >= 768
+  ? 3
+  : 1;
+  const visibleCards = cards.slice(currentIndex, currentIndex + visibleCount);
+
   
- 
-  const visibleCards = cards.slice(currentIndex, currentIndex + 4);
   return (
-    
-      <div className="relative p-2">
+      <div className="relative w-full overflow-hidden p-4">
         {/* Título */}
         <div className="text-center mb-6 mt-2">
-          <h1 className="text-2xl font-bold text-gray-800 md:text-4xl">
-            ¿Buscas el alojamiento perfecto?
+          <h1 className="text-2xl font-bold text-gray-800 md:text-3xl">
+              Are you looking for the perfect accommodation?
           </h1>
         </div>
-        {/* Slider */}
+        {/* Cards */}
         <div className="overflow-hidden flex flex-col items-center justify-center">
           <div className="flex space-x-4 " >
             {visibleCards.map((card, index) => (
               <div key={index} className="w-90 p-1" >
-              <CardSlider
+              <CardHotelSlider
                   title={card.title}
                   price={card.price}
                   location={card.location}
@@ -118,7 +100,7 @@ export default function SliderHotels() {
         {/* Prev Button */}
         <button
           onClick={handlePrev}
-          className="flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md text-gray-800 hover:bg-gray-100 focus:outline-none absolute lg:left-3 top-1/2 border transform -translate-y-1/2 z-10">
+          className="flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md text-gray-800 hover:bg-gray-100 focus:outline-none absolute left-0 lg:left-0 top-1/2 border transform -translate-y-1/2 z-10">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-caret-left-fill" viewBox="0 0 16 16">
               <path d="M3.86 8.753l5.482-4.796c.646-.566 1.658-.106 1.658.753v9.592a1 1 0 0 1-1.658.753l-5.48-4.796a1 1 0 0 1 0-1.506z"/>
             </svg>
@@ -127,7 +109,7 @@ export default function SliderHotels() {
         {/* Next Button */}
         <button
            onClick={handleNext}
-          className="flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md text-gray-800 hover:bg-gray-100 focus:outline-none absolute  lg:right-0 top-1/2 transform -translate-y-1/2 z-10"
+          className="flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md text-gray-800 hover:bg-gray-100 focus:outline-none absolute right-0 lg:right-0 top-1/2 transform -translate-y-1/2 z-10"
         > 
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-caret-right-fill" viewBox="0 0 16 16">
             <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>

@@ -15,7 +15,7 @@ Una aplicación para gestionar reservas de habitaciones en hoteles. Permite a lo
 
 ## Tecnologías
 
-- **Backend**: Spring Boot
+- **Backend**: Spring Boot + JWT + Spring Security + JPA + JAVA
 - **Frontend**: React + Vite + TypeScript + Tailwind CSS
 - **Base de Datos**: PostgreSQL
 - **Pasarela de Pago**: Mercado Pago API + Stripe API

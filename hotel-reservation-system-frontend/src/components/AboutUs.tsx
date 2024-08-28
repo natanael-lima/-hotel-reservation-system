@@ -2,9 +2,9 @@ import React from 'react'
 
 export default function AboutUs() {
   return (
-    <section className="w-full py-12 md:py-24 lg:py-12 flex flex-col items-center justify-center">
+    <section className="w-full py-2 md:py-2 lg:py-0 flex flex-col items-center justify-center">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 lg:gap-8 gap-4 max-w-7xl mx-auto py-10 px-4 sm:px-6 lg:px-2">
-          <div className="rounded-lg">
+          <div className="rounded-lg bg-white shadow-sm p-5">
             <div className="container grid max-w-6xl items-center gap-8 px-4 md:px-6 lg:grid-cols-2 lg:gap-16">
             <div className="space-y-4">
                 <div className="space-y-2">

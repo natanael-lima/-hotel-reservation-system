@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 // CardSlider.tsx
 interface CardProps {
@@ -9,18 +10,17 @@ interface CardProps {
     imageUrl: string;
   }
 
-export default function CardSlider({ title, price, location, imageUrl }: CardProps) {
+export default function CardHotelSlider({ title, price, location, imageUrl }: CardProps) {
  
 
   return (
-    <div className="w-full max-w-sm bg-white rounded-lg shadow-md  overflow-hidden mx-2">
-        <a href="">
-            <img
+    <div className="max-w-sm bg-white rounded-lg shadow-md">
+       <Link to="/productDetail">
+        <img
             src={imageUrl}
             alt="Hotel Image"
-            className="object-cover rounded-t-lg w-full aspect-[2/2]  "
-        />
-        <div className="p-3 space-y-4">
+            className="object-cover rounded-t-lg aspect-[2/2] w-full"/>
+        <div className="p-4 space-y-4">
             <div className="flex items-center">
             <h3 className="text-lg font-semibold text-black">{title}</h3>
             </div>
@@ -34,7 +34,7 @@ export default function CardSlider({ title, price, location, imageUrl }: CardPro
             <div className="text-sm text-gray-500">Desde <strong className="font-bold text-black"> {price} </strong> 
             </div>
         </div>
-        </a>
+        </Link>
     </div>
   )
 }

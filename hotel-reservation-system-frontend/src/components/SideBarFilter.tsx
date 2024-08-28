@@ -1,3 +1,5 @@
+import {  } from "react";
+import Button from "./Button";
 
 const provinces = [
   "Buenos Aires", "Catamarca", "Chaco", "Chubut", "Córdoba", "Corrientes", "Entre Ríos", 
@@ -7,10 +9,12 @@ const provinces = [
 ];
 
 export default function FiltroV() {
+
   return (
     
-    <aside className="">
+    <aside className="lg:block hidden">
       <h2 className="text-2xl font-bold mb-6 text-gray-800">Filter by</h2>
+
       <form className="space-y-8">
         <div className="mt-8 block lg:hidden">
           <button
@@ -34,7 +38,7 @@ export default function FiltroV() {
           <div className="hidden space-y-4 lg:block">
               {/* Filtros provincias */}
               <div>
-                 <label htmlFor="province" className="block text-xs font-medium text-gray-700"> Search by location </label>
+                 <label htmlFor="province" className="space-y-4 lg:block mt-6 lg:mt-0 text-xs font-medium text-gray-700"> Search by location </label>
                 <select
                   id="province"
                   className="mt-2 rounded border-gray-300 text-sm border p-2 pr-5"
@@ -329,12 +333,7 @@ export default function FiltroV() {
 
         {/* Botón de Aplicar Filtros */}
         <div className="flex justify-center mt-6">
-          <button
-            type="submit"
-            className="px-6 py-3 bg-orange-600 text-white font-semibold rounded-lg shadow-lg hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          >
-            Aplicar Filtros
-          </button>
+          <Button content="Apply Filters" className={'px-6 py-3 font-semibold shadow-lg'}/>
         </div>
       </form>
     </aside>
