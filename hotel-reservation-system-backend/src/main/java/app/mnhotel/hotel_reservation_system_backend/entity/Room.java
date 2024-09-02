@@ -26,11 +26,6 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "hotel_id")
- 	@JsonBackReference
- 	private Hotel hotel;
-	
 	@Column(name="room_number")
     private String roomNumber;
 	
@@ -42,5 +37,10 @@ public class Room {
 	
 	@Column(name="availbility")
 	private Boolean availbility;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "hotel_id")
+ 	@JsonBackReference
+ 	private Hotel hotel;
 
 }
