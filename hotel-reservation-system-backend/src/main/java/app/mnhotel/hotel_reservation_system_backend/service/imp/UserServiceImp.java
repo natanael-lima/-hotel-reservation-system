@@ -17,7 +17,6 @@ public class UserServiceImp implements UserService{
 
 	 	@Autowired
 	    private UserRepository userRepository;
-
 	 	
 	 	  private UserDTO convertEntityToDTO(User user) {
 		        // Implement conversion from User entity to UserDTO

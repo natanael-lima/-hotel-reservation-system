@@ -20,10 +20,10 @@ public class ReservationDTO {
 	 private LocalDateTime createdAt;
 
 	 // Información del usuario que realizó la reserva
-	 private UserDTO user;
-	    
+	 private Long userId;
+
 	 // Información de la habitación reservada
-	 private RoomDTO room;
+	 private Long roomId;
 
 	 // Pagos asociados a la reserva
 	 private List<PaymentDTO> payments;
