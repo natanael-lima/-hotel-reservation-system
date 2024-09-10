@@ -1,8 +1,20 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom'; // Importa Link
 import Button from './Button';
 import ButtonSecondary from './ButtonSecondary';
+import LoginUser from './LoginUser';
+import RegisterUser from './RegisterUser';
 
 export default function Header() {
+  const [modalType, setModalType] = useState<'login' | 'register' | null>(null);
+
+  const openModal = (type: 'login' | 'register') => {
+    setModalType(type);
+  };
+
+  const closeModal = () => {
+    setModalType(null);
+  };
   return (
     <header className="absolute top-0 left-0 right-0 z-10 bg-[rgba(255,255,255,0)]">
     <div className="mx-auto flex h-16 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8">
@@ -38,11 +50,16 @@ export default function Header() {
 
       <div className="flex items-center gap-4">
         <div className="sm:flex sm:gap-4">
-          <Button content='Login' className={''} />
+          <Button content='Login' onClick={() => openModal('login')} className={''} />
 
-          <ButtonSecondary content='Register' className={'hidden sm:block'}/>
+          <ButtonSecondary content='Register' onClick={() => openModal('register')} className={'hidden sm:block'}/>
         </div>
-        
+          
+          {/* Modal for Login */}
+          {modalType === 'login' && <LoginUser closeModal={closeModal} />}
+          
+          {/* Modal for Register */}
+          {modalType === 'register' && <RegisterUser closeModal={closeModal} />}
         <button
           className="block rounded bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 md:hidden"
         >
