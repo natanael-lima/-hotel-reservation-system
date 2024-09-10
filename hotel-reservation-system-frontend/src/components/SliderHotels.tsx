@@ -1,5 +1,7 @@
-import { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { fetchHotels, HotelDTO } from '../services/hotelService';
 import CardHotelSlider from './CardHotelSlider'
+
 
 const cards = [
   {
@@ -52,16 +54,35 @@ const cards = [
   },
 ];
 
+
+
+
 export default function SliderHotels() {
+  const [hotels, setHotels] = useState<HotelDTO[]>([]);
+  useEffect(() => {
+    async function loadHotels() {
+      try {
+        const data = await fetchHotels();
+        setHotels(data);
+        console.log(data);
+      } catch (error) {
+        console.error('Error fetching hotels:', error);
+      }
+    }
+
+    loadHotels();
+  }, []);
+  
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const handlePrev = () => {
     setCurrentIndex((prevIndex:number) =>
-      prevIndex === 0 ? cards.length - 4 : prevIndex - 1
+      prevIndex === 0 ? hotels.length - 4 : prevIndex - 1
     );
   };
   const handleNext = () => {
     setCurrentIndex((prevIndex:number) =>
-      prevIndex === cards.length - 4 ? 0 : prevIndex + 1
+      prevIndex === hotels.length - 4 ? 0 : prevIndex + 1
     );
   };
   // Calcular la cantidad de elementos visibles según el tamaño de la pantalla
@@ -70,7 +91,7 @@ export default function SliderHotels() {
   : window.innerWidth >= 768
   ? 3
   : 1;
-  const visibleCards = cards.slice(currentIndex, currentIndex + visibleCount);
+  const visibleCards = hotels.slice(currentIndex, currentIndex + visibleCount);
 
   
   return (
@@ -87,10 +108,12 @@ export default function SliderHotels() {
             {visibleCards.map((card, index) => (
               <div key={index} className="w-90 p-1" >
               <CardHotelSlider
-                  title={card.title}
-                  price={card.price}
+                  name={card.name}
+                  price="2999"
                   location={card.location}
-                  description={card.description} imageUrl={card.imageUrl}/>
+                  description={card.description}
+                  rating={card.rating} 
+                  imageUrl="https://www.stanzahotel.com/wp-content/uploads/2023/10/habitacion_Doble_1.jpg"/>
               </div>
             ))}
           </div>

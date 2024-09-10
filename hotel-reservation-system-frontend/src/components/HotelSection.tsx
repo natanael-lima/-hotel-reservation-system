@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { fetchHotels, HotelDTO } from '../services/hotelService';
 import ButtonGroup from './ButtonGroup';
-const hotels = [
+const hotelss = [
   {
     id: 1,
     name: 'Hotel Grand',
@@ -21,6 +22,20 @@ const hotels = [
   }
 ];
 export default function Dashboard() {
+  const [hotels, setHotels] = useState<HotelDTO[]>([]);
+  useEffect(() => {
+    async function loadHotels() {
+      try {
+        const data = await fetchHotels();
+        setHotels(data);
+        console.log(data);
+      } catch (error) {
+        console.error('Error fetching hotels:', error);
+      }
+    }
+
+    loadHotels();
+  }, []);
   return (
     <div className="bg-white rounded-lg shadow overflow-hidden">
   <table className="min-w-full divide-y divide-gray-200">
@@ -44,8 +59,8 @@ export default function Dashboard() {
               <td className="px-6 py-4 whitespace-nowrap">{hotel.location}</td>
               <td className="px-6 py-4 whitespace-nowrap">{hotel.description}</td>
               <td className="px-6 py-4 whitespace-nowrap"><span>{hotel.rating}</span></td>
-              <td className="px-6 py-4 whitespace-nowrap">{hotel.roomIds.length} Rooms</td>
-              <td className="px-6 py-4 whitespace-nowrap">{hotel.reviews.length} Reviews</td>
+              <td className="px-6 py-4 whitespace-nowrap">{hotel.id} Rooms</td>
+              <td className="px-6 py-4 whitespace-nowrap">{hotel.id} Reviews</td>
               <td className="px-6 py-4 whitespace-nowrap"><ButtonGroup/></td>
             </tr>
           ))}

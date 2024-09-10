@@ -46,7 +46,7 @@ public class RoomController {
 	
 	// API para elimanar un hotel by ID.
 	@DeleteMapping("/delete-room/{id}")
-	public ResponseEntity<ApiResponse> deleteHotel(@PathVariable Long id) throws Exception {
+	public ResponseEntity<ApiResponse> deleteRoom(@PathVariable Long id) throws Exception {
 		 try {
 			 	roomService.deleteRoom(id);
 			 	return ResponseEntity.ok(new ApiResponse("El room se elimino correctamente"));
@@ -86,7 +86,7 @@ public class RoomController {
 	
 	// API para obtener un producto by ID.
     @GetMapping("/get-room/{id}")
-    public ResponseEntity<?> findProductById(@PathVariable Long id) throws Exception {
+    public ResponseEntity<?> findRoomById(@PathVariable Long id) throws Exception {
     	
         try {
         	 Optional<RoomDTO> room = roomService.getRoom(id);

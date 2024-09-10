@@ -13,6 +13,7 @@ public interface UserService {
 	void deleteUser(Long id) throws Exception;
 	ApiResponse updateUser(Long id, UserDTO userDTO) throws Exception;
     UserDTO getUserById(Long id) throws Exception;
+    Optional <UserDTO> getUser(Long id) throws Exception;
     List<UserDTO> getAllUsers();
     UserDTO registerOrLoginWithGoogle(GoogleUserDTO googleUserDTO) throws Exception;
     
