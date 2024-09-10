@@ -62,7 +62,7 @@ export default function SliderPlace() {
       </div>
 
       <button
-        className="flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md text-gray-800 hover:bg-gray-200 focus:outline-none absolute border left-0 lg:left-0 top-1/2 transform -translate-y-1/6 z-10"
+        className="flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md text-gray-800 hover:bg-gray-200 focus:outline-none absolute border left-0 lg:left-0 top-1/2 transform -translate-y-1/6 z-0"
         onClick={prevSlide}
         disabled={currentIndex === 0}
       >
@@ -72,7 +72,7 @@ export default function SliderPlace() {
       </button>
 
       <button
-        className="flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md text-gray-800 hover:bg-gray-200 focus:outline-none absolute border right-0 lg:right-0 top-1/2 transform -translate-y-1/6 z-10"
+        className="flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md text-gray-800 hover:bg-gray-200 focus:outline-none absolute border right-0 lg:right-0 top-1/2 transform -translate-y-1/6 z-0"
         onClick={nextSlide}
         disabled={currentIndex === places.length - 6}
       >

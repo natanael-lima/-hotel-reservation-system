@@ -123,7 +123,7 @@ export default function SliderHotels() {
         {/* Prev Button */}
         <button
           onClick={handlePrev}
-          className="flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md text-gray-800 hover:bg-gray-100 focus:outline-none absolute left-0 lg:left-0 top-1/2 border transform -translate-y-1/2 z-10">
+          className="flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md text-gray-800 hover:bg-gray-100 focus:outline-none absolute left-0 lg:left-0 top-1/2 border transform -translate-y-1/2 z-0">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-caret-left-fill" viewBox="0 0 16 16">
               <path d="M3.86 8.753l5.482-4.796c.646-.566 1.658-.106 1.658.753v9.592a1 1 0 0 1-1.658.753l-5.48-4.796a1 1 0 0 1 0-1.506z"/>
             </svg>
@@ -132,7 +132,7 @@ export default function SliderHotels() {
         {/* Next Button */}
         <button
            onClick={handleNext}
-          className="flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md text-gray-800 hover:bg-gray-100 focus:outline-none absolute right-0 lg:right-0 top-1/2 transform -translate-y-1/2 z-10"
+          className="flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md text-gray-800 hover:bg-gray-100 focus:outline-none absolute right-0 lg:right-0 top-1/2 border transform -translate-y-1/2 z-0"
         > 
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-caret-right-fill" viewBox="0 0 16 16">
             <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
