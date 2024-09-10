@@ -19,10 +19,12 @@ import app.mnhotel.hotel_reservation_system_backend.dto.HotelDTO;
 import app.mnhotel.hotel_reservation_system_backend.entity.Hotel;
 import app.mnhotel.hotel_reservation_system_backend.response.ApiResponse;
 import app.mnhotel.hotel_reservation_system_backend.service.HotelService;
+import lombok.RequiredArgsConstructor;
 
 @CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/api/hotel")
+@RequiredArgsConstructor
 public class HotelController {
 
 	@Autowired

@@ -13,6 +13,7 @@ const places = [
     { id: 10, image: 'https://turismo-en-argentina.com/wp-content/uploads/2023/02/Turismo-en-Neuquen.jpg', province: 'Neuquén', availability: 5 },
   ];
 export default function SliderPlace() {
+
     const [currentIndex, setCurrentIndex] = useState(0);
     const nextSlide = () => {
       if (currentIndex < places.length - 6) {

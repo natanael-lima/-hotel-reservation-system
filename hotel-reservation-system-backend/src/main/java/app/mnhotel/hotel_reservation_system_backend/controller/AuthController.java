@@ -14,7 +14,7 @@ import app.mnhotel.hotel_reservation_system_backend.response.AuthResponse;
 import app.mnhotel.hotel_reservation_system_backend.service.AuthService;
 import lombok.RequiredArgsConstructor;
 
-@CrossOrigin(origins = "http://localhost:4200") // Reemplaza esto con el dominio de tu frontend
+@CrossOrigin(origins = "http://localhost:5173") // Reemplaza esto con el dominio de tu frontend
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor

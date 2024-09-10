@@ -1,6 +1,7 @@
 package app.mnhotel.hotel_reservation_system_backend.service.imp;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -80,8 +81,13 @@ public class UserServiceImp implements UserService{
 	    @Override
 	    public UserDTO getUserById(Long id) throws Exception {
 	        User user = userRepository.findById(id)
-	            .orElseThrow(() -> new Exception("User not found"));
+	           .orElseThrow(() -> new Exception("User not found"));
 	        return convertEntityToDTO(user);
+	    }
+	    @Override
+	    public Optional<UserDTO> getUser(Long id) throws Exception {
+	        return userRepository.findById(id)
+			        .map(this::convertEntityToDTO);
 	    }
 
 	    @Override
