@@ -1,43 +1,36 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react'
 import { FaGoogle, FaGithub,FaRegEye } from 'react-icons/fa';
 import { IoMdClose } from "react-icons/io";
-import { MdAlternateEmail } from "react-icons/md";
+import { CgNametag } from "react-icons/cg";
+import { FaLink } from "react-icons/fa6";
 import { FiUser } from "react-icons/fi";
+import { RegisterDTO, registerUser } from '../services/authService';
 
 interface RegisterUserProps {
     closeModal: () => void;
   }
 export default function RegisterUser({ closeModal }:RegisterUserProps) {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
     const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [fullName, setFullName] = useState('');
+    const [profileImageUrl, setProfileImageUrl] = useState('');
+    const [error, setError] = useState<string | null>(null);
   
     const handleRegister = async (e: React.FormEvent) => {
       e.preventDefault();
-      
-      // Aquí puedes manejar la lógica del registro, como enviar los datos al backend
-      console.log("Username:", username);
-      console.log("Email:", email);
-      console.log("Password:", password);
-     // Simula un registro exitoso
-     try {
-        // Aquí deberías enviar los datos al backend
-        // const response = await fetch('/api/register', {
-        //   method: 'POST',
-        //   headers: {
-        //     'Content-Type': 'application/json',
-        //   },
-        //   body: JSON.stringify({ username, email, password }),
-        // });
-  
-        // Verifica si el registro fue exitoso y maneja la respuesta
-        // const data = await response.json();
-        // console.log('Registro exitoso:', data);
-        
-        // Cierra el modal después del registro
+      const newUser: RegisterDTO = {
+        id: 0,
+        username,
+        password,
+        fullName,
+        profileImageUrl
+      };
+      try {
+        await registerUser(newUser);
         closeModal();
       } catch (error) {
-        console.error('Error durante el registro:', error);
+        setError('Error durante el registro. Por favor, inténtalo de nuevo.');
       }
     };
 
@@ -59,6 +52,7 @@ export default function RegisterUser({ closeModal }:RegisterUserProps) {
         <p className="mt-4 mb-4 text-center leading-relaxed text-gray-500">
           Create an account to get started
         </p>
+        {error && <p className="text-red-500 text-center mb-4">{error}</p>}
 
         <form onSubmit={handleRegister} className="space-y-4">
           <div>
@@ -74,31 +68,11 @@ export default function RegisterUser({ closeModal }:RegisterUserProps) {
                 className="w-full rounded-lg border border-gray-200 p-4 pe-12 text-sm shadow-sm"
                 placeholder="Enter username"
               />
-               <span className="absolute inset-y-0 end-0 grid place-content-center px-4">
+              <span className="absolute inset-y-0 end-0 grid place-content-center px-4">
                 <FiUser className='text-gray-400' />
               </span>
             </div>
           </div>
-
-          <div>
-            <label htmlFor="email" className="sr-only">Email</label>
-            <div className="relative">
-              <input
-                type="email" 
-                id="email" 
-                name="email" 
-                value={email} 
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="w-full rounded-lg border border-gray-200 p-4 pe-12 text-sm shadow-sm"
-                placeholder="Enter email"
-              />
-              <span className="absolute inset-y-0 end-0 grid place-content-center px-4">
-                <MdAlternateEmail className='text-gray-400' />
-              </span>
-            </div>
-          </div>
-
           <div>
             <label htmlFor="password" className="sr-only">Password</label>
             <div className="relative">
@@ -117,6 +91,44 @@ export default function RegisterUser({ closeModal }:RegisterUserProps) {
               </span>
             </div>
           </div>
+          <div>
+            <label htmlFor="fullName" className="sr-only">Full Name</label>
+            <div className="relative">
+              <input
+                type="text" 
+                id="fullName" 
+                name="fullName" 
+                value={fullName} 
+                onChange={(e) => setFullName(e.target.value)}
+                required
+                className="w-full rounded-lg border border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                placeholder="Enter full name"
+              />
+               <span className="absolute inset-y-0 end-0 grid place-content-center px-4">
+                <CgNametag className='text-gray-400' />
+              </span>
+            </div>
+          </div>
+
+          <div>
+            <label htmlFor="profileImageUrl" className="sr-only">Profile Image URL</label>
+            <div className="relative">
+              <input
+                type="text" 
+                id="profileImageUrl" 
+                name="profileImageUrl" 
+                value={profileImageUrl} 
+                onChange={(e) => setProfileImageUrl(e.target.value)}
+                className="w-full rounded-lg border border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                placeholder="Enter profile image URL"
+              />
+               <span className="absolute inset-y-0 end-0 grid place-content-center px-4">
+                <FaLink className='text-gray-400' />
+              </span>
+            </div>
+          </div>
+
+          
 
           <button type="submit" className="w-full inline-block rounded-lg bg-blue-500 px-5 py-3 text-sm font-medium text-white hover:bg-blue-600">
             Sign up

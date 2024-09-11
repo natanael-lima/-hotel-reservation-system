@@ -4,19 +4,21 @@ import { IoMdClose } from "react-icons/io";
 import { FiUser } from "react-icons/fi";
 
 interface LoginUserProps {
-    closeModal: () => void; // Definimos el tipo de la prop closeModal como una función que no retorna nada
-  }
-export default function LoginUser({ closeModal }:LoginUserProps) {
+  closeModal: () => void;
+  onLogin: (username: string, password: string) => void;
+}
+export default function LoginUser({ closeModal,onLogin  }:LoginUserProps) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleLogin = (e: React.FormEvent) => {
-        e.preventDefault();
-        // Aquí puedes manejar la lógica del login
-        console.log("Email:", username);
-        console.log("Password:", password);
-        // Luego de manejar el login, puedes cerrar el modal
-        closeModal();
+    const handleSubmit = async (event: React.FormEvent) => {
+      event.preventDefault();
+      try {
+        await onLogin(username, password);
+        closeModal(); // Cierra el modal después de iniciar sesión
+      } catch (error) {
+        console.error('Login failed:', error);
+      }
     };
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-10">
@@ -36,7 +38,7 @@ export default function LoginUser({ closeModal }:LoginUserProps) {
         <p className="mt-4 mb-4 text-center leading-relaxed text-gray-500" >
              Hey, Enter your details to get sign in top your account
         </p>
-        <form onSubmit={handleLogin} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
             <div>
                 <label htmlFor="username" className="sr-only">Username</label>
                 <div className="relative">
@@ -44,7 +46,7 @@ export default function LoginUser({ closeModal }:LoginUserProps) {
                         type="text" 
                         id="username" 
                         name="username" 
-                        value={username} 
+                        value={username}
                         onChange={(e) => setUsername(e.target.value)}
                         required
                         className="w-full rounded-lg border border-gray-200 p-4 pe-12 text-sm shadow-sm"

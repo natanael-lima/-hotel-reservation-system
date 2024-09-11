@@ -7,6 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import app.mnhotel.hotel_reservation_system_backend.enums.RoleType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,16 +26,22 @@ public class User implements UserDetails  {
     private Long id;
     
     @Column(name="username", unique = true, nullable = false)
-    private String username;
+    private String username; // En tu caso, almacenarás el email aquí
     
     @Column(name="password")
     private String password;
     
-    @Column(name="email", unique = true, nullable = false)
-    private String email;
+    @Column(name="full_name", nullable = true)
+    private String fullName;
     
     @Column(name="created_at")
     private LocalDateTime createdAt;
+    
+    @Column(name="image_url")
+    private String profileImageUrl;
+
+    @Column(name="role")
+    private RoleType role; 
     
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JsonIgnore
@@ -46,7 +53,7 @@ public class User implements UserDetails  {
     @Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
-		return null;
+    	return List.of(new SimpleGrantedAuthority(role.name()));
 	}
 
 	@Override

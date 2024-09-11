@@ -5,6 +5,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +22,7 @@ import app.mnhotel.hotel_reservation_system_backend.request.RegisterRequest;
 import app.mnhotel.hotel_reservation_system_backend.response.ApiResponse;
 import app.mnhotel.hotel_reservation_system_backend.service.RoomService;
 import app.mnhotel.hotel_reservation_system_backend.service.UserService;
+import app.mnhotel.hotel_reservation_system_backend.entity.User;
 import lombok.RequiredArgsConstructor;
 
 @CrossOrigin(origins = "http://localhost:5173") // Reemplaza esto con el dominio de tu frontend
@@ -59,7 +62,7 @@ public class UserController {
 	}
 	
 	// API para editar un hotel by ID.
-	@PutMapping("/update-room/{id}")
+	@PutMapping("/update-user/{id}")
 	public ResponseEntity<ApiResponse> updateUser(@PathVariable Long id, @RequestBody UserDTO userDTO) {
 		    try {
 		        return ResponseEntity.ok(userService.updateUser(id,userDTO));
@@ -106,4 +109,27 @@ public class UserController {
                                  .body(new ApiResponse("Error al obtener el user: " + e.getMessage()));
         }
     }
+    
+    // API para obtener el usuario logueado actual.
+    @GetMapping("/current")
+	public ResponseEntity<UserDTO> getCurrentUser() throws Exception {
+    		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	        // Obtener los detalles del usuario actualmente autenticado
+	    	String username = authentication.getName();
+	    	//User logueado date
+	        User user = userService.findByUsername(username).orElse(null);
+	      
+	        if (user == null) {
+	        	 return ResponseEntity.notFound().build(); 
+	        }
+	        	System.out.println("id de user: "+user.getId());
+       	 		UserDTO userDTO = userService.getUserById(user.getId());
+	         if (userDTO==null)
+	         {
+	            return ResponseEntity.notFound().build();
+	         }
+	         return ResponseEntity.ok(userDTO);
+	       
+	       
+	}
 }

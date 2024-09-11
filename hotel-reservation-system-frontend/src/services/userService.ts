@@ -1,37 +1,37 @@
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+import api from './axiosConfig'; // Usa la instancia configurada
 
-interface User {
+export interface UserDTO {
   id: number;
-  name: string;
-  email: string;
-  // Agrega más campos según sea necesario
+  username: string;
+  fullName?: string; // Opcional según tu modelo
+  profileImageUrl?: string; // Opcional según tu modelo
+  createdAt?: string; // Formato de fecha ISO
 }
 
 interface CreateUserResponse {
   success: boolean;
-  user: User;
-  // Agrega más campos según sea necesario
+  user: UserDTO;
+}
+export async function fetchUsers(): Promise<UserDTO[]> {
+  const response = await api.get('/api/user/get-all');
+  return response.data as UserDTO[];
 }
 
-export async function fetchUsers(): Promise<User[]> {
-  const response = await fetch(`${API_URL}/users`);
-  if (!response.ok) {
-    throw new Error('Failed to fetch users');
-  }
-  return await response.json() as User[];
+export async function createUser(data: Partial<UserDTO>): Promise<CreateUserResponse> {
+  const response = await api.post('/api/user/registration-user', data);
+  return response.data as CreateUserResponse;
 }
 
-export async function createUser(data: Partial<User>): Promise<CreateUserResponse> {
-  const response = await fetch(`${API_URL}/users`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  });
+export async function updateUser(id: number, data: Partial<UserDTO>): Promise<CreateUserResponse> {
+  const response = await api.put(`/api/user/update-user/${id}`, data);
+  return response.data as CreateUserResponse;
+}
 
-  if (!response.ok) {
-    throw new Error('Failed to create user');
-  }
-  return await response.json() as CreateUserResponse;
+export async function deleteUser(id: number): Promise<void> {
+  await api.delete(`/api/user/delete-user/${id}`);
+}
+
+export async function getCurrentUser(): Promise<UserDTO> {
+  const response = await api.get('/api/user/current');
+  return response.data as UserDTO;
 }

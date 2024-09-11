@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import app.mnhotel.hotel_reservation_system_backend.dto.GoogleUserDTO;
 import app.mnhotel.hotel_reservation_system_backend.dto.UserDTO;
+import app.mnhotel.hotel_reservation_system_backend.entity.User;
 import app.mnhotel.hotel_reservation_system_backend.request.RegisterRequest;
 import app.mnhotel.hotel_reservation_system_backend.response.ApiResponse;
 
@@ -16,11 +17,12 @@ public interface UserService {
     Optional <UserDTO> getUser(Long id) throws Exception;
     List<UserDTO> getAllUsers();
     UserDTO registerOrLoginWithGoogle(GoogleUserDTO googleUserDTO) throws Exception;
+    Optional<User> findByUsername(String username);
     
+    //public List<UserDTO> getAllUserExceptMe(String name) throws Exception;
     // void changePassword(Long userId, String currentPassword, String newPassword) throws Exception;
     //public boolean existsByName(String name);
 	//public boolean existsAdminRole();
 	//public boolean existsUsername(String name);
-	//Optional<User> findByUsername(String username);
 	
 }

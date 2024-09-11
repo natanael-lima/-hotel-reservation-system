@@ -2,8 +2,6 @@ import React, { useState } from 'react'
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
-
-
 export default function LoginAdmin() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -13,10 +11,10 @@ export default function LoginAdmin() {
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-          await login(username, password);
-          navigate('/admin/dashboard'); // Redirecciona al usuario después del login
+        await login(username, password);
+        navigate('/admin/dashboard');
         } catch (error) {
-          console.error('Failed to login:', error);
+        console.error('Failed to login:', error);
         }
     };
 
@@ -33,7 +31,7 @@ export default function LoginAdmin() {
             </p>
 
             <div>
-                <label htmlFor="email" className="sr-only">Email</label>
+                <label htmlFor="username" className="sr-only">Username</label>
 
                 <div className="relative">
                 <input
@@ -44,7 +42,7 @@ export default function LoginAdmin() {
                      onChange={(e) => setUsername(e.target.value)}
                      required
                     className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
-                    placeholder="Enter email"
+                    placeholder="Enter username"
                 />
 
                
@@ -71,12 +69,9 @@ export default function LoginAdmin() {
                 type="submit"
                 className="block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white"
             >
-                Sign in
+               Access
             </button>
-            <p className="text-center text-sm text-gray-500">
-                No account?
-                <a className="underline" href="#">Sign up</a>
-            </p>
+          
             </form>
         </div>
     </div>

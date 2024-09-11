@@ -1,20 +1,33 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState } from 'react';
 import { Link } from 'react-router-dom'; // Importa Link
 import Button from './Button';
 import ButtonSecondary from './ButtonSecondary';
 import LoginUser from './LoginUser';
 import RegisterUser from './RegisterUser';
+import ProfileCircule from './ProfileCircule';
+import { login } from '../services/authService'; // Asegúrate de que esta función maneje el inicio de sesión
 
 export default function Header() {
-  const [modalType, setModalType] = useState<'login' | 'register' | null>(null);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [modalType, setModalType] = useState<string | null>(null);
 
-  const openModal = (type: 'login' | 'register') => {
+  const openModal = (type: string) => {
     setModalType(type);
   };
 
   const closeModal = () => {
     setModalType(null);
   };
+  const handleLogin = async (username: string, password: string) => {
+    try {
+      const data = await login(username, password);
+      setIsAuthenticated(true); // Actualiza el estado a autenticado
+    } catch (error) {
+      console.error('Login failed:', error);
+    }
+  };
+  
   return (
     <header className="absolute top-0 left-0 right-0 z-10 bg-[rgba(255,255,255,0)]">
     <div className="mx-auto flex h-16 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8">
@@ -49,17 +62,25 @@ export default function Header() {
       </nav>
 
       <div className="flex items-center gap-4">
-        <div className="sm:flex sm:gap-4">
-          <Button content='Login' onClick={() => openModal('login')} className={''} />
+          {!isAuthenticated ? (
+            <div className="sm:flex sm:gap-4">
+              <Button content='Login' onClick={() => openModal('login')} className={''} />
+              <ButtonSecondary content='Register' onClick={() => openModal('register')} className={'hidden sm:block'} />
+            </div>
+          ) : (
+            <div className="flex items-center">
+              <ProfileCircule />
+            </div>
+          )}
 
-          <ButtonSecondary content='Register' onClick={() => openModal('register')} className={'hidden sm:block'}/>
-        </div>
+
+
+            {/* Modal for Login */}
+            {modalType === 'login' && <LoginUser closeModal={closeModal} onLogin={handleLogin} />}
+            
+            {/* Modal for Register */}
+            {modalType === 'register' && <RegisterUser closeModal={closeModal} />}
           
-          {/* Modal for Login */}
-          {modalType === 'login' && <LoginUser closeModal={closeModal} />}
-          
-          {/* Modal for Register */}
-          {modalType === 'register' && <RegisterUser closeModal={closeModal} />}
         <button
           className="block rounded bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 md:hidden"
         >
