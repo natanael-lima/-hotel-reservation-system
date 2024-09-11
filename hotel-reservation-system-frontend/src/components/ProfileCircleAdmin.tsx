@@ -52,7 +52,9 @@ export default function ProfileCircule() {
                 alt="User profile"
                 className="w-full h-full object-cover"
               />
+              
           </div>
+          <p className="text-gray-400">{user.fullName}</p>
           {isOpen ? (
             <FiChevronUp className="ml-1 h-5 w-5 text-gray-400 transition-transform duration-200" />
           ) : (

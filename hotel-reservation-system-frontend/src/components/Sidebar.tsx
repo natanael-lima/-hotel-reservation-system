@@ -22,7 +22,7 @@ export default function Sidebar({ isMobileMenuOpen, activeTab, setActiveTab, tog
         <span className="text-white text-xl font-semibold">Hotel Admin</span>
       </div>
       <nav className="mt-8">
-        {['dashboard','hotel', 'rooms', 'users'].map((tab) => (
+        {['dashboard','hotels', 'rooms','users','reservations','payments','reviews' ].map((tab) => (
           
           <button
             key={tab}

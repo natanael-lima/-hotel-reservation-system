@@ -4,7 +4,10 @@ import RoomSection from '../components/RoomSection';
 import UserSection from '../components/UserSection';
 import Dashboard from '../components/Dashboard';
 import HeaderAdmin from '../components/HeaderAdmin';
-import Sidebar from '../components/SideBar';
+import Sidebar from '../components/Sidebar';
+import PaymentSection from '../components/PaymentSection';
+import ReservationSection from '../components/ReservationSection';
+import ReviewSection from '../components/ReviewSection';
 
 
 export default function AdminPanel() {
@@ -30,9 +33,13 @@ export default function AdminPanel() {
           isMobileMenuOpen={isMobileMenuOpen} />
         <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-6">
           {activeTab === 'dashboard' && <Dashboard/>}
-          {activeTab === 'hotel' && <HotelSection />}
+          {activeTab === 'hotels' && <HotelSection />}
           {activeTab === 'rooms' && <RoomSection />}
           {activeTab === 'users' && <UserSection />}
+          {activeTab === 'reservations' && <ReservationSection/>}
+          {activeTab === 'payments' && <PaymentSection />}
+          {activeTab === 'reviews' && <ReviewSection />}
+          
         </main>
       </div>
     </div>
