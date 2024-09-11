@@ -15,10 +15,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RegisterRequest {
 	
-	Long id;
-    String username;
-    String password;
-    String email;
-    LocalDateTime createdAt;
+	private Long id;
+    private String username; // Aquí se almacenará el email
+    private String password;
+    private String fullName; // Cambiado de `fullname` a `fullName` para seguir el estándar de Java
+    private String profileImageUrl;
+    private LocalDateTime createdAt;
 }
 

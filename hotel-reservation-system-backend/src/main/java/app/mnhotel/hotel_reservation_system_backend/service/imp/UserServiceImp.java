@@ -1,31 +1,42 @@
 package app.mnhotel.hotel_reservation_system_backend.service.imp;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import app.mnhotel.hotel_reservation_system_backend.dto.GoogleUserDTO;
 import app.mnhotel.hotel_reservation_system_backend.dto.UserDTO;
 import app.mnhotel.hotel_reservation_system_backend.entity.User;
+import app.mnhotel.hotel_reservation_system_backend.enums.RoleType;
+import app.mnhotel.hotel_reservation_system_backend.jwt.JwtService;
 import app.mnhotel.hotel_reservation_system_backend.repository.UserRepository;
 import app.mnhotel.hotel_reservation_system_backend.request.RegisterRequest;
 import app.mnhotel.hotel_reservation_system_backend.response.ApiResponse;
 import app.mnhotel.hotel_reservation_system_backend.service.UserService;
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class UserServiceImp implements UserService{
 
 	 	@Autowired
 	    private UserRepository userRepository;
+	 	
+	 	private final PasswordEncoder passwordEncoder;
 	 	
 	 	  private UserDTO convertEntityToDTO(User user) {
 		        // Implement conversion from User entity to UserDTO
 		        return UserDTO.builder()
 		                .id(user.getId())
 		                .username(user.getUsername())
-		                .email(user.getEmail())
+		                .fullName(user.getFullName())
 		                .createdAt(user.getCreatedAt())
+		                .profileImageUrl(user.getProfileImageUrl())
+		                .role(user.getRole())
 		                // Add other fields as needed
 		                .build();
 		    }
@@ -35,9 +46,10 @@ public class UserServiceImp implements UserService{
 		        return User.builder()
 		                .id(userDTO.getId())
 		                .username(userDTO.getUsername())
-		                //.password(userDTO.getPassword())
-		                .email(userDTO.getEmail())
+		                .fullName(userDTO.getFullName())
 		                .createdAt(userDTO.getCreatedAt())
+		                .profileImageUrl(userDTO.getProfileImageUrl())
+		                .role(userDTO.getRole())
 		                // Add other fields as needed
 		                .build();
 		    }
@@ -45,13 +57,15 @@ public class UserServiceImp implements UserService{
 		@Override
 	    public void createUser(RegisterRequest request) throws Exception { 
 		         try {	
-
-		        	 User user = new User();
-		        	 	user.setId(request.getId());
-		 		 		user.setUsername(request.getUsername());
-		 		 		user.setPassword(request.getPassword());
-		 		 		user.setEmail(request.getEmail());
-		 		 		user.setCreatedAt(request.getCreatedAt());
+		        	 
+		        	 User user = User.builder()
+		     		        .username(request.getUsername())
+		     		        .password(passwordEncoder.encode(request.getPassword()))
+		     		        .fullName(request.getFullName())
+		     		        .createdAt(LocalDateTime.now())
+		     		        .profileImageUrl(request.getProfileImageUrl())
+		     		        .role(RoleType.USER)
+		     		        .build();
 		 		       userRepository.save(user);
 		 	 		
 		 		} catch (Exception e) {
@@ -71,8 +85,19 @@ public class UserServiceImp implements UserService{
 		        User existingUser = userRepository.findById(id)
 		            .orElseThrow(() -> new Exception("User not found"));
 		        // Update user fields
-		        existingUser.setUsername(userDTO.getUsername());
-		        existingUser.setEmail(userDTO.getEmail());
+		        // Actualiza los campos del usuario
+		        if (userDTO.getUsername() != null) {
+		            existingUser.setUsername(userDTO.getUsername()); // Actualiza el email
+		        }
+
+		        if (userDTO.getFullName() != null) {
+		            existingUser.setFullName(userDTO.getFullName()); // Actualiza el nombre completo
+		        }
+
+		        if (userDTO.getProfileImageUrl() != null) {
+		            existingUser.setProfileImageUrl(userDTO.getProfileImageUrl()); // Actualiza la URL de la imagen
+		        }
+
 		        //existingUser.setCreatedAt(date);
 		        // Add other fields as needed
 		        userRepository.save(existingUser);
@@ -96,6 +121,14 @@ public class UserServiceImp implements UserService{
 	        return users.stream().map(this::convertEntityToDTO).collect(Collectors.toList());
 	    }
 
+	    @Override
+		public Optional<User>findByUsername(String username) {
+			// TODO Auto-generated method stub
+			Optional<User> result= userRepository.findByUsername(username);
+			
+			return result;
+		}
+	    
 	    @Override
 	    public UserDTO registerOrLoginWithGoogle(GoogleUserDTO googleUserDTO) throws Exception {
 	        // Implement logic to handle Google registration or login

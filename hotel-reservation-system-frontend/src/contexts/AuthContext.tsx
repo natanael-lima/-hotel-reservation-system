@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
-import { login as loginService, logout as logoutService, isAuthenticated } from '../services/authService';
+import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import { login as loginService, logout as logoutService, isAuthenticated as checkIsAuthenticated } from '../services/authService';
 
 interface AuthContextType {
   isAuthenticated: boolean;
@@ -10,20 +10,24 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export default function AuthProvider({ children }: { children: ReactNode }) {
-  const [authenticated, setAuthenticated] = useState(isAuthenticated());
+  const [isAuthenticated, setIsAuthenticated] = useState(checkIsAuthenticated());
+  
+  useEffect(() => {
+    setIsAuthenticated(checkIsAuthenticated());
+  }, []);
 
   const login = async (username: string, password: string) => {
     await loginService(username, password);
-    setAuthenticated(true);
+    setIsAuthenticated(true);
   };
 
   const logout = () => {
     logoutService();
-    setAuthenticated(false);
+    setIsAuthenticated(false);
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated: authenticated, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

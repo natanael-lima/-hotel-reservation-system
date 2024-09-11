@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import app.mnhotel.hotel_reservation_system_backend.entity.User;
+import app.mnhotel.hotel_reservation_system_backend.enums.RoleType;
 import app.mnhotel.hotel_reservation_system_backend.jwt.JwtService;
 import app.mnhotel.hotel_reservation_system_backend.repository.UserRepository;
 import app.mnhotel.hotel_reservation_system_backend.request.LoginRequest;
@@ -35,9 +36,10 @@ public class AuthServiceImp implements AuthService{
 		User user = User.builder()
 		        .username(request.getUsername())
 		        .password(passwordEncoder.encode(request.getPassword()))
-		        .email(request.getEmail())
+		        .fullName(request.getFullName())
 		        .createdAt(LocalDateTime.now())
-		        //.role(RoleType.USER)
+		        .profileImageUrl(request.getProfileImageUrl())
+		        .role(RoleType.USER)
 		        .build();
 
 		// Guardar el usuario en la base de datos
