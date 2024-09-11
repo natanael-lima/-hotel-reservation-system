@@ -1,9 +1,9 @@
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-import Hero from '../components/Hero'
-import SliderHotels from '../components/SliderHotels'
-import Publicity from '../components/Publicity'
-import SliderPlaces from '../components/SliderPlaces'
+import Header from '../components/Layouts/Header'
+import Footer from '../components/Layouts/Footer'
+import Hero from '../components/Hero/Hero'
+import SliderHotels from '../components/Sliders/SliderHotels'
+import Publicity from '../components/Publicity/Publicity'
+import SliderPlaces from '../components/Sliders/SliderPlaces'
 
 
 

@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState } from 'react';
 import { Link } from 'react-router-dom'; // Importa Link
-import Button from './Button';
-import ButtonSecondary from './ButtonSecondary';
-import LoginUser from './LoginUser';
-import RegisterUser from './RegisterUser';
-import ProfileCircle from './ProfileCircle';
-import { login } from '../services/authService'; // Asegúrate de que esta función maneje el inicio de sesión
+import Button from '../Buttons/Button';
+import ButtonSecondary from '../Buttons/ButtonSecondary';
+import LoginUser from '../../pages/LoginPage';
+import RegisterUser from '../../pages/RegisterPage';
+import ProfileCircle from '../Profile/ProfileCircle';
+import { login } from '../../services/authService'; // Asegúrate de que esta función maneje el inicio de sesión
 
 export default function Header() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
@@ -49,7 +49,7 @@ export default function Header() {
           </li>
 
           <li>
-            <Link to="/products" className="text-gray-200 transition hover:text-gray-300/75">
+            <Link to="/rooms" className="text-gray-200 transition hover:text-gray-300/75">
              Rooms
             </Link>
           </li>

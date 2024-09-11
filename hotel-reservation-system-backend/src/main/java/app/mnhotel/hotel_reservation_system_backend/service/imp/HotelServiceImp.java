@@ -28,6 +28,9 @@ public class HotelServiceImp implements HotelService{
                 .location(hotel.getLocation())
                 .description(hotel.getDescription())
                 .rating(hotel.getRating())
+                .image(hotel.getImage())
+                .province(hotel.getProvince())
+                .rating(hotel.getRating())
                 /*.roomIds(hotel.getRooms() != null 
                     ? hotel.getRooms().stream().map(Room::getId).collect(Collectors.toList()) 
                     : null)
@@ -48,6 +51,8 @@ public class HotelServiceImp implements HotelService{
         hotel.setLocation(hotelDTO.getLocation());
         hotel.setDescription(hotelDTO.getDescription());
         hotel.setRating(hotelDTO.getRating());
+        hotel.setImage(hotelDTO.getImage());
+        hotel.setProvince(hotelDTO.getProvince());
 
         // Omitimos las relaciones (rooms y reviews) para simplificar
         // Podrías agregar lógica adicional para asignar estos valores si es necesario
@@ -64,8 +69,9 @@ public class HotelServiceImp implements HotelService{
 		 		hotel.setName(hotelRequest.getName());
 		 		hotel.setLocation(hotelRequest.getLocation());
 		 		hotel.setDescription(hotelRequest.getDescription());
-		 		hotel.setRating(hotelRequest.getRating()); // Guardar la ruta de la imagen en el objeto Product
-
+		 		hotel.setRating(hotelRequest.getRating());
+		 		hotel.setImage(hotelRequest.getImage());
+		 		hotel.setProvince(hotelRequest.getProvince());
 			    hotelRepository.save(hotel);
 		 		
 			} catch (Exception e) {
@@ -113,7 +119,9 @@ public class HotelServiceImp implements HotelService{
 		hotel.setLocation(hotelRequest.getLocation());
 		hotel.setDescription(hotelRequest.getDescription());
 		hotel.setRating(hotelRequest.getRating());
-		
+		hotel.setImage(hotelRequest.getImage());
+ 		hotel.setProvince(hotelRequest.getProvince());
+ 		
 		hotelRepository.save(hotel);
 		
 	    return new ApiResponse("El Hotel se actualizó satisfactoriamente");

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Button from './Button'
+import Button from '../Buttons/Button'
 
 interface Room {
     id: number
@@ -42,7 +42,7 @@ export default function CardProduct({ room }: CardRoomProps) {
                 <span>{room.province}</span>
             </div>
             <div className="mt-4 md:mt-8 ">
-                <Link to="/productDetail" >
+                <Link to="/roomDetail" >
                   <Button content="See Availability" className={'inline-block w-full px-12 py-3 text-center'}/>
                 </Link>
             </div>

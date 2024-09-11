@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import CardPlace from '../Cards/CardPlace';
 
 const places = [
     { id: 1, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXMEQhe2S6knxEYo4uGxPxrrgJRyroPJ6L-g&s', province: 'Buenos Aires', availability: 5 },
@@ -42,23 +43,14 @@ export default function SliderPlace() {
         </div>
         {/* Cards */}
       <div className="flex">
-        {places.slice(currentIndex, currentIndex + visibleCount).map((place) => (
-          <a href='https://www.booking.com/index.es-ar.html' key={place.id} className={`w-${Math.floor(100 / visibleCount)}% p-5`}>
-            <div className="bg-white rounded-lg shadow-md">
-              <img
-                src={place.image}
-                alt={place.province}
-                className="w-64 h-32 object-cover rounded-t-lg"
-              />
-              <div className="p-4">
-                <h3 className="text-lg font-semibold">{place.province}</h3>
-                <p className="text-sm text-gray-600">
-                  Disponibilidad: {place.availability}
-                </p>
-              </div>
-            </div>
-          </a>
-        ))}
+          {places.slice(currentIndex, currentIndex + visibleCount).map((place) => (
+                    <CardPlace
+                        key={place.id}
+                        place={place}
+                        visibleCount={visibleCount}/>
+    
+            ))}
+        
       </div>
 
       <button

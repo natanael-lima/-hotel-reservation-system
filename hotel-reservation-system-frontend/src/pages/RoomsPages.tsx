@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import CardRoom from '../components/CardRoom'
-import SideBarFilter from '../components/SideBarFilter'
-import Header from '../components/Header'
-import HeaderBanner from '../components/HeaderBanner'
+import CardRoom from '../components/Cards/CardRoom'
+import SideBarFilter from '../components/Sidebars/SideBarFilter'
+import Header from '../components/Layouts/Header'
+import HeaderBanner from '../components/Layouts/HeaderBanner'
 
 
 

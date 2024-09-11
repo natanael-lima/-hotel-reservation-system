@@ -1,14 +1,14 @@
 import './index.css'
 import './App.css'
-import Home from './pages/Home'
+import Home from './pages/HomePage'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Product from './pages/Rooms';
-import About from './pages/About';
-import RoomDetails from './pages/RoomDetails';
-import AdminPanel from './pages/AdminPanel';
-import LoginAdmin from './components/LoginAdmin';
+import Room from './pages/RoomsPages';
+import About from './pages/AboutPage';
+import RoomDetails from './pages/RoomDetailsPage';
+import AdminPanel from './pages/DashboardPage';
+import LoginAdmin from './pages/AdminLoginPage';
 import AuthProvider from './contexts/AuthContext';
-import { ProtectedRoute } from './components/ProtectedRoute';
+import { ProtectedRoute } from './routes/ProtectedRoute';
 
 function App() {
 
@@ -21,9 +21,9 @@ function App() {
           <Route element={<ProtectedRoute />}>
             <Route path="/admin/dashboard" element={<AdminPanel />} />
           </Route>
-          <Route path="/products" element={<Product />} />
+          <Route path="/rooms" element={<Room />} />
           <Route path="/about" element={<About />} />
-          <Route path="/productDetail" element={<RoomDetails />} />
+          <Route path="/roomDetail" element={<RoomDetails />} />
         </Routes>
       </Router>
     </AuthProvider>
