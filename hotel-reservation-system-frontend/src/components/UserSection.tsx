@@ -4,6 +4,7 @@ import ButtonGroup from './ButtonGroup'
 export default function UserSection() {
   return (
     <div className="bg-white rounded-lg shadow overflow-hidden">
+      <h2 className="block sm:hidden text-2xl font-bold text-gray-500 capitalize p-4 border">Users</h2>
       <table className="min-w-full divide-y divide-gray-200">
         <thead className="bg-gray-50">
           <tr>

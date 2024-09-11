@@ -1,6 +1,6 @@
 
 import React from 'react';
-import ProfileCircule from './ProfileCircule';
+import ProfileCircleAdmin from './ProfileCircleAdmin';
 
 interface HeaderProps {
   activeTab: string;
@@ -26,9 +26,9 @@ export default function HeaderAdmin({ activeTab, toggleMobileMenu, isMobileMenuO
             </svg>
           )}
       </button>
-      <h1 className="text-2xl font-semibold capitalize">{activeTab}</h1>
-      <div className="flex items-center">
-        <ProfileCircule/>
+      <h2 className="hidden lg:block lg:text-2xl font-semibold capitalize">{activeTab}</h2>
+      <div className="flex items-center justify-between">
+        <ProfileCircleAdmin/>
       </div>
     </header>
   )

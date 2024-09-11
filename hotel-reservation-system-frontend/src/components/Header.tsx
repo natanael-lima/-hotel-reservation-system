@@ -5,7 +5,7 @@ import Button from './Button';
 import ButtonSecondary from './ButtonSecondary';
 import LoginUser from './LoginUser';
 import RegisterUser from './RegisterUser';
-import ProfileCircule from './ProfileCircule';
+import ProfileCircle from './ProfileCircle';
 import { login } from '../services/authService'; // Asegúrate de que esta función maneje el inicio de sesión
 
 export default function Header() {
@@ -69,7 +69,7 @@ export default function Header() {
             </div>
           ) : (
             <div className="flex items-center">
-              <ProfileCircule />
+              <ProfileCircle />
             </div>
           )}
 
