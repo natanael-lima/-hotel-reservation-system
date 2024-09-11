@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import HotelSection from '../components/HotelSection';
-import RoomSection from '../components/RoomSection';
-import UserSection from '../components/UserSection';
-import Dashboard from '../components/Dashboard';
-import HeaderAdmin from '../components/HeaderAdmin';
-import Sidebar from '../components/Sidebar';
-import PaymentSection from '../components/PaymentSection';
-import ReservationSection from '../components/ReservationSection';
-import ReviewSection from '../components/ReviewSection';
+import HotelSection from '../components/Admin/Tables/HotelTable';
+import RoomSection from '../components/Admin/Tables/RoomTable';
+import UserSection from '../components/Admin/Tables/UserTable';
+import Dashboard from '../components/Admin/Dashboard/Dashboard';
+import HeaderAdmin from '../components/Admin/Navigation/HeaderAdmin';
+import Sidebar from '../components/Admin/Navigation/Sidebar';
+import PaymentSection from '../components/Admin/Tables/PaymentTable';
+import ReservationSection from '../components/Admin/Tables/ReservationTable';
+import ReviewSection from '../components/Admin/Tables/ReviewTable';
 
 
 export default function AdminPanel() {

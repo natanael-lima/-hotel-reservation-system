@@ -1,6 +1,7 @@
 
 import React from 'react';
-import ProfileCircleAdmin from './ProfileCircleAdmin';
+import ProfileCircleAdmin from '../../Profile/ProfileCircleAdmin';
+
 
 interface HeaderProps {
   activeTab: string;

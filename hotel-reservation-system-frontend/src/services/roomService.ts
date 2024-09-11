@@ -1,37 +1,42 @@
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+import api from './axiosConfig'; // Usa la instancia configurada
 
-interface User {
+export interface RoomDTO {
   id: number;
-  name: string;
-  email: string;
-  // Agrega más campos según sea necesario
+  roomNumber: string;
+  type: string;
+  pricePerNight: number;
+  availability: boolean;
+  description: string;
+  capacity: number;
+  image: string;
+  amenities: string[];
+  hotelId?: number;  // Opcional
 }
-
-interface CreateUserResponse {
+interface CreateRoomResponse {
   success: boolean;
-  user: User;
-  // Agrega más campos según sea necesario
+  room: RoomDTO;
 }
 
-export async function fetchUsers(): Promise<User[]> {
-  const response = await fetch(`${API_URL}/users`);
-  if (!response.ok) {
-    throw new Error('Failed to fetch users');
-  }
-  return await response.json() as User[];
+export async function fetchRooms(): Promise<RoomDTO[]> {
+  const response = await api.get('/api/room/get-all');
+  return response.data as RoomDTO[];
 }
 
-export async function createUser(data: Partial<User>): Promise<CreateUserResponse> {
-  const response = await fetch(`${API_URL}/users`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  });
+export async function createRoom(data: Partial<RoomDTO>): Promise<CreateRoomResponse> {
+  const response = await api.post('/api/room/registration-room', data);
+  return response.data as CreateRoomResponse;
+}
 
-  if (!response.ok) {
-    throw new Error('Failed to create user');
-  }
-  return await response.json() as CreateUserResponse;
+export async function updateRoom(id: number, data: Partial<RoomDTO>): Promise<CreateRoomResponse> {
+  const response = await api.put(`/api/room/update-room/${id}`, data);
+  return response.data as CreateRoomResponse;
+}
+
+export async function deleteRoom(id: number): Promise<void> {
+  await api.delete(`/api/room/delete-room/${id}`);
+}
+
+export async function getRoomById(id: number): Promise<RoomDTO> {
+  const response = await api.get(`/api/room/get-room/${id}`);
+  return response.data as RoomDTO;
 }

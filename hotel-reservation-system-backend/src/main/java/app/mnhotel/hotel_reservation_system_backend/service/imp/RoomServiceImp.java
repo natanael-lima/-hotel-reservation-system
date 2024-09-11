@@ -34,6 +34,10 @@ public class RoomServiceImp implements RoomService{
 	            .type(room.getType())
 	            .pricePerNight(room.getPricePerNight())
 	            .availability(room.getAvailbility())
+	            .description(room.getDescription())
+	            .capacity(room.getCapacity())
+	            .image(room.getImage())
+	            .amenities(room.getAmenities())
 	            .hotelId(room.getHotel() != null ? room.getHotel().getId() : null) // Asignar hotelId si el hotel no es nulo
 	            .build();
 	}
@@ -50,6 +54,10 @@ public class RoomServiceImp implements RoomService{
 	    room.setType(roomDTO.getType());
 	    room.setPricePerNight(roomDTO.getPricePerNight());
 	    room.setAvailbility(roomDTO.getAvailability());
+	    room.setDescription(roomDTO.getDescription());
+	    room.setCapacity(roomDTO.getCapacity());
+	    room.setImage(roomDTO.getImage());
+	    room.setAmenities(roomDTO.getAmenities());
 	    //room.setHotel(hotel); // Asignar el hotel asociado
 
 	    return room;
@@ -67,6 +75,10 @@ public class RoomServiceImp implements RoomService{
 		 	    room.setType(roomRequest.getType());
 		 	    room.setPricePerNight(roomRequest.getPricePerNight());
 		 	    room.setAvailbility(roomRequest.getAvailability());
+		 	    room.setDescription(roomRequest.getDescription());
+			    room.setCapacity(roomRequest.getCapacity());
+			    room.setImage(roomRequest.getImage());
+			    room.setAmenities(roomRequest.getAmenities());
 		 	    // Convertir hotelId a un objeto Hotel
 		        if (roomRequest.getHotelId() != null) {
 		            Hotel hotel = hotelRepository.findById(roomRequest.getHotelId())
@@ -101,7 +113,11 @@ public class RoomServiceImp implements RoomService{
 		 	    room.setType(roomRequest.getType());
 		 	    room.setPricePerNight(roomRequest.getPricePerNight());
 		 	    room.setAvailbility(roomRequest.getAvailability());
-				
+		 	    room.setDescription(roomRequest.getDescription());
+			    room.setCapacity(roomRequest.getCapacity());
+			    room.setImage(roomRequest.getImage());
+			    room.setAmenities(roomRequest.getAmenities());
+			    
 				roomRepository.save(room);
 				
 			    return new ApiResponse("El Room se actualizó satisfactoriamente");

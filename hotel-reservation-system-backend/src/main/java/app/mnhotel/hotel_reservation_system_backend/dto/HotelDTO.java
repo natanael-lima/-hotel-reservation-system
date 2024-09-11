@@ -1,6 +1,8 @@
 package app.mnhotel.hotel_reservation_system_backend.dto;
 
 import java.util.List;
+
+import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,6 +19,8 @@ public class HotelDTO {
     private String location;
 	private String description;
 	private Double rating;
+	private String image;
+	private String province;
 	
 	// Opcional: Nombres de habitaciones o sus IDs
     private List<Long> roomIds;

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { fetchHotels, HotelDTO } from '../services/hotelService';
-import ButtonGroup from './ButtonGroup';
-const hotelss = [
+import { fetchHotels, HotelDTO } from '../../../services/hotelService';
+import ButtonGroup from '../../Buttons/ButtonGroup';
+
+/*const hotelss = [
   {
     id: 1,
     name: 'Hotel Grand',
@@ -20,7 +21,8 @@ const hotelss = [
     roomIds: [201, 202],
     reviews: [{ id: 3, content: 'Fantastic views!' }]
   }
-];
+];*/
+
 export default function Dashboard() {
   const [hotels, setHotels] = useState<HotelDTO[]>([]);
   useEffect(() => {

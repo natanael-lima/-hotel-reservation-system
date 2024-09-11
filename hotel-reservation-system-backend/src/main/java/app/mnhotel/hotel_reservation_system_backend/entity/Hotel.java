@@ -39,6 +39,12 @@ public class Hotel {
 	@Column(name="rating")
 	private Double rating;
 	
+	@Column(name="image")
+	private String image;
+	
+	@Column(name="province")
+	private String province;
+	
 	@OneToMany(mappedBy = "hotel",cascade = CascadeType.ALL)
  	@JsonIgnoreProperties
     private List<Room> rooms;

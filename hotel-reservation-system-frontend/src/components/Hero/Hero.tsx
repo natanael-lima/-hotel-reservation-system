@@ -1,5 +1,5 @@
-import Button from "./Button";
-import Search from "./Search";
+import Button from "../Buttons/Button";
+import Search from "../Search/Search";
 
 export default function Hero() {
   return (
@@ -21,7 +21,9 @@ export default function Hero() {
               Choose from more than 5,000 accommodations... Don't miss out!
             </p>
             <div className="mt-4 md:mt-8">
-              <Button content="Explore Hotels" className="px-12 py-3"/>
+              <Button content="Explore Rooms" className="px-12 py-3" onClick={function (): void {
+              throw new Error("Function not implemented.");
+            } }/>
             </div>
           </div>
         </div>

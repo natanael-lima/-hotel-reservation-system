@@ -1,5 +1,7 @@
 package app.mnhotel.hotel_reservation_system_backend.entity;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -37,6 +39,19 @@ public class Room {
 	
 	@Column(name="availbility")
 	private Boolean availbility;
+	
+	@Column(name="description")
+	private String description;
+	
+	@Column(name="capacity")
+	private Integer capacity;
+	
+	@Column(name="image")
+	private String image;
+	
+	@Column(name="amenities")
+	private List<String> amenities;
+	
 	
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "hotel_id")

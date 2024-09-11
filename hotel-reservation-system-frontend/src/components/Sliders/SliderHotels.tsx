@@ -1,60 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { fetchHotels, HotelDTO } from '../services/hotelService';
-import CardHotelSlider from './CardHotelSlider'
-
-
-const cards = [
-  {
-    id: 1,
-    title: 'Jujuy',
-    price: '$ 49.921',
-    location: '220 West 41st Street',
-    description: 'Luxurious hotel with stunning views and world-class amenities.',
-    imageUrl: 'https://mediterrani.com/wp-content/uploads/2020/01/Tipos-de-habitaciones-de-un-hotel-2.jpg'
-  },
-  {
-    id: 2,
-    title: 'Cordoba',
-    price: '$ 179.921',
-    location: '220 West 41st Street',
-    description: 'Comfortable stay with great amenities and city views.',
-    imageUrl: 'https://i.pinimg.com/originals/da/39/ce/da39ceccbd966c17c74c016e311e1ec2.png'
-  },
-  {
-    id: 3,
-    title: 'Salta',
-    price: '$ 110.221',
-    location: '220 West 41st Street',
-    description: 'Cozy and affordable with a beach view.',
-    imageUrl: 'https://t1.uc.ltmcdn.com/es/posts/1/9/2/guia_de_decoracion_para_habitaciones_de_hoteles_47291_orig.jpg'
-  },
-  {
-    id: 4,
-    title: 'Neuquen',
-    price: '$ 100.921',
-    location: '220 West 41st Street',
-    description: 'Elegant hotel with top-notch service and cityscape.',
-    imageUrl: 'https://images.mirai.com/INFOROOMS/100376355/gMTRa4gTj2qTSjgroLJ5/gMTRa4gTj2qTSjgroLJ5_large.jpg'
-  },
-  {
-    id: 5,
-    title: 'Buenos Aires',
-    price: '$ 59.921',
-    location: '220 West 41st Street',
-    description: 'Luxury hotel with entertainment and dining options.',
-    imageUrl: 'https://www.stanzahotel.com/wp-content/uploads/2023/10/habitacion_Doble_1.jpg'
-  },
-  {
-    id: 6,
-    title: 'Mendoza',
-    price: '$ 80.921',
-    location: '220 West 41st Street',
-    description: 'Luxury hotel with entertainment and dining options.',
-    imageUrl: 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/244761737.jpg?k=40131134630aaed754b1e29f45795895f5f9c20f05b748416d40571132c38342&o=&hp=1'
-  },
-];
-
-
+import { fetchHotels, HotelDTO } from '../../services/hotelService';
+import CardHotel from '../Cards/CardHotel';
 
 
 export default function SliderHotels() {
@@ -107,13 +53,13 @@ export default function SliderHotels() {
           <div className="flex space-x-4 " >
             {visibleCards.map((card, index) => (
               <div key={index} className="w-90 p-1" >
-              <CardHotelSlider
+              <CardHotel
                   name={card.name}
                   price="2999"
                   location={card.location}
                   description={card.description}
                   rating={card.rating} 
-                  imageUrl="https://www.stanzahotel.com/wp-content/uploads/2023/10/habitacion_Doble_1.jpg"/>
+                  imageUrl={card.image}/>
               </div>
             ))}
           </div>
@@ -141,3 +87,54 @@ export default function SliderHotels() {
       </div>
     )
 }
+
+/*const cards = [
+  {
+    id: 1,
+    title: 'Jujuy',
+    price: '$ 49.921',
+    location: '220 West 41st Street',
+    description: 'Luxurious hotel with stunning views and world-class amenities.',
+    imageUrl: 'https://mediterrani.com/wp-content/uploads/2020/01/Tipos-de-habitaciones-de-un-hotel-2.jpg'
+  },
+  {
+    id: 2,
+    title: 'Cordoba',
+    price: '$ 179.921',
+    location: '220 West 41st Street',
+    description: 'Comfortable stay with great amenities and city views.',
+    imageUrl: 'https://i.pinimg.com/originals/da/39/ce/da39ceccbd966c17c74c016e311e1ec2.png'
+  },
+  {
+    id: 3,
+    title: 'Salta',
+    price: '$ 110.221',
+    location: '220 West 41st Street',
+    description: 'Cozy and affordable with a beach view.',
+    imageUrl: 'https://t1.uc.ltmcdn.com/es/posts/1/9/2/guia_de_decoracion_para_habitaciones_de_hoteles_47291_orig.jpg'
+  },
+  {
+    id: 4,
+    title: 'Neuquen',
+    price: '$ 100.921',
+    location: '220 West 41st Street',
+    description: 'Elegant hotel with top-notch service and cityscape.',
+    imageUrl: 'https://images.mirai.com/INFOROOMS/100376355/gMTRa4gTj2qTSjgroLJ5/gMTRa4gTj2qTSjgroLJ5_large.jpg'
+  },
+  {
+    id: 5,
+    title: 'Buenos Aires',
+    price: '$ 59.921',
+    location: '220 West 41st Street',
+    description: 'Luxury hotel with entertainment and dining options.',
+    imageUrl: 'https://www.stanzahotel.com/wp-content/uploads/2023/10/habitacion_Doble_1.jpg'
+  },
+  {
+    id: 6,
+    title: 'Mendoza',
+    price: '$ 80.921',
+    location: '220 West 41st Street',
+    description: 'Luxury hotel with entertainment and dining options.',
+    imageUrl: 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/244761737.jpg?k=40131134630aaed754b1e29f45795895f5f9c20f05b748416d40571132c38342&o=&hp=1'
+  },
+];*/

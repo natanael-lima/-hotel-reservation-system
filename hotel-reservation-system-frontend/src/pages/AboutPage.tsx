@@ -1,8 +1,14 @@
 import React from 'react'
+import Header from '../components/Layouts/Header'
+import HeaderBanner from '../components/Layouts/HeaderBanner'
 
-export default function AboutUs() {
+export default function About() {
   return (
-    <section className="w-full py-2 md:py-2 lg:py-0 flex flex-col items-center justify-center">
+    <div>
+        <Header />
+        <HeaderBanner/>
+        <main className='flex'>
+        <section className="w-full py-2 md:py-2 lg:py-0 flex flex-col items-center justify-center">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 lg:gap-8 gap-4 max-w-7xl mx-auto py-10 px-4 sm:px-6 lg:px-2">
           <div className="rounded-lg bg-white shadow-sm p-5">
             <div className="container grid max-w-6xl items-center gap-8 px-4 md:px-6 lg:grid-cols-2 lg:gap-16">
@@ -117,5 +123,9 @@ export default function AboutUs() {
             </div>
         
     </section>
+        </main>
+        
+    </div>
+    
   )
 }

@@ -6,6 +6,7 @@ export interface UserDTO {
   fullName?: string; // Opcional según tu modelo
   profileImageUrl?: string; // Opcional según tu modelo
   createdAt?: string; // Formato de fecha ISO
+  role?: string; // Opcional según tu modelo
 }
 
 interface CreateUserResponse {

@@ -1,9 +1,9 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { getCurrentUser, UserDTO } from '../services/userService';
+import { getCurrentUser, UserDTO } from '../../services/userService';
 
 import { IoIosLogOut } from "react-icons/io";
 import { RiLockPasswordLine } from "react-icons/ri";
