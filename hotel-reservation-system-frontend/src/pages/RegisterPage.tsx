@@ -56,17 +56,17 @@ export default function RegisterUser({ closeModal }:RegisterUserProps) {
 
         <form onSubmit={handleRegister} className="space-y-4">
           <div>
-            <label htmlFor="username" className="sr-only">Username</label>
+            <label htmlFor="username" className="sr-only">Email</label>
             <div className="relative">
               <input
-                type="text" 
+                type="email" 
                 id="username" 
                 name="username" 
                 value={username} 
                 onChange={(e) => setUsername(e.target.value)}
                 required
                 className="w-full rounded-lg border border-gray-200 p-4 pe-12 text-sm shadow-sm"
-                placeholder="Enter username"
+                placeholder="Enter email"
               />
               <span className="absolute inset-y-0 end-0 grid place-content-center px-4">
                 <FiUser className='text-gray-400' />
