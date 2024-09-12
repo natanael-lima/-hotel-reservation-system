@@ -12,6 +12,7 @@ export interface RoomDTO {
   amenities: string[];
   hotelId?: number;  // Opcional
 }
+
 interface CreateRoomResponse {
   success: boolean;
   room: RoomDTO;

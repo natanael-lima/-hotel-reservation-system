@@ -3,9 +3,9 @@ import React, { useState } from 'react'
 
 interface Filters {
   roomTypes: {
-    singleRoom: boolean
-    doubleRoom: boolean
-    suite: boolean
+    Single: boolean
+    Double: boolean
+    Suite: boolean
   }
   priceRange: [number, number]
   dateRange: {
@@ -24,9 +24,9 @@ interface SideBarFilterProps {
 export default function SideBarFilter({ onFilterChange }: SideBarFilterProps){
   const [filters, setFilters] = useState<Filters>({
     roomTypes: {
-      singleRoom: false,
-      doubleRoom: false,
-      suite: false,
+      Single: false,
+      Double: false,
+      Suite: false,
     },
     priceRange: [0, 500], // Asegúrate de que sea un tupla de [number, number]
     dateRange: {

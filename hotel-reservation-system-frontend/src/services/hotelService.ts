@@ -20,7 +20,6 @@ export interface HotelDTO {
     // Otros campos de reseña según sea necesario
   }
   
-
 // Get all hotels
 export async function fetchHotels(): Promise<HotelDTO[]> {
   const response = await fetch(`${API_URL}/api/hotel/get-all`);

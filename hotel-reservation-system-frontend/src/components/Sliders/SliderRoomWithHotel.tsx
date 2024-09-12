@@ -1,44 +1,70 @@
 import React, { useEffect, useState } from 'react'
-import { fetchHotels, HotelDTO } from '../../services/hotelService';
-import CardHotel from '../Cards/CardHotel';
+import { HotelDTO, fetchHotelById } from '../../services/hotelService';
+import CardHotel from '../Cards/CardRoomWithHotel';
+import { RoomDTO, fetchRooms } from '../../services/roomService';
 
+export interface RoomWithHotel extends RoomDTO {
+  hotel: HotelDTO;
+}
 
 export default function SliderHotels() {
-  const [hotels, setHotels] = useState<HotelDTO[]>([]);
+  const [roomsWithHotels, setRoomsWithHotels] = useState<RoomWithHotel[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  
   useEffect(() => {
-    async function loadHotels() {
+    async function loadRoomsAndHotels() {
       try {
-        const data = await fetchHotels();
-        setHotels(data);
-        console.log(data);
-      } catch (error) {
-        console.error('Error fetching hotels:', error);
+        setLoading(true);
+        const rooms = await fetchRooms();
+        
+        const roomsWithHotelsPromises = rooms.map(async (room) => {
+          if (room.hotelId) {
+            const hotel = await fetchHotelById(room.hotelId);
+            return { ...room, hotel } as RoomWithHotel;
+          }
+          return null; // Ignoramos las habitaciones sin hotelId
+        });
+
+        const roomsWithHotelsResult = (await Promise.all(roomsWithHotelsPromises)).filter((room): room is RoomWithHotel => room !== null);
+        setRoomsWithHotels(roomsWithHotelsResult);
+      } catch (err) {
+        setError('Error fetching rooms and hotels');
+        console.error('Error fetching rooms and hotels:', err);
+      } finally {
+        setLoading(false);
       }
     }
 
-    loadHotels();
+    loadRoomsAndHotels();
   }, []);
   
-
-  const [currentIndex, setCurrentIndex] = useState(0);
   const handlePrev = () => {
-    setCurrentIndex((prevIndex:number) =>
-      prevIndex === 0 ? hotels.length - 4 : prevIndex - 1
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? roomsWithHotels.length - 4 : prevIndex - 1
     );
   };
-  const handleNext = () => {
-    setCurrentIndex((prevIndex:number) =>
-      prevIndex === hotels.length - 4 ? 0 : prevIndex + 1
-    );
-  };
-  // Calcular la cantidad de elementos visibles según el tamaño de la pantalla
-  const visibleCount = window.innerWidth >= 1024
-  ? 4
-  : window.innerWidth >= 768
-  ? 3
-  : 1;
-  const visibleCards = hotels.slice(currentIndex, currentIndex + visibleCount);
 
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === roomsWithHotels.length - 4 ? 0 : prevIndex + 1
+    );
+  };
+  
+  // Calcular la cantidad de elementos visibles según el tamaño de la pantalla
+  const visibleCount = typeof window !== 'undefined' 
+    ? window.innerWidth >= 1024
+      ? 4
+      : window.innerWidth >= 768
+      ? 3
+      : 1
+    : 4; // Default to 4 if window is not defined (for SSR)
+
+  const visibleCards = roomsWithHotels.slice(currentIndex, currentIndex + visibleCount);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
   
   return (
       <div className="relative w-full overflow-hidden p-4">
@@ -51,15 +77,15 @@ export default function SliderHotels() {
         {/* Cards */}
         <div className="overflow-hidden flex flex-col items-center justify-center">
           <div className="flex space-x-4 " >
-            {visibleCards.map((card, index) => (
+            {visibleCards.map((room, index) => (
               <div key={index} className="w-90 p-1" >
               <CardHotel
-                  name={card.name}
-                  price="2999"
-                  location={card.location}
-                  description={card.description}
-                  rating={card.rating} 
-                  imageUrl={card.image}/>
+                  name={room.hotel?.name}
+                  price={room.pricePerNight}
+                  location={room.hotel?.location}
+                  description={room.description}
+                  rating={room.hotel?.rating} 
+                  imageUrl={room.image}/>
               </div>
             ))}
           </div>

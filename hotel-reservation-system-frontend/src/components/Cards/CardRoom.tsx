@@ -1,26 +1,30 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Button from '../Buttons/Button'
+import ButtonSecondary from '../Buttons/ButtonSecondary';
 
-interface Room {
-    id: number
-    type: string
-    name: string
-    price: number
-    available: boolean
-    province: string
-  }
-  
-  type CardRoomProps = {
-    room: Room
-  }
+// CardSlider.tsx
+interface CardProps {
+  name: string;
+  location: string;
+  province: string;
+  rating: number;
+  type: string;
+  price: number;
+  imageUrl: string;
+  available:boolean;
+}
+
+type CardRoomProps = {
+    room: CardProps
+}
   
 export default function CardProduct({ room }: CardRoomProps) {
   return (
-    <div className="relative overflow-hidden rounded-lg shadow-md group hover:shadow-xl hover:-translate-y-2 transition-transform duration-300 ease-in-out bg-white">
+    <div className="relative overflow-hidden rounded-lg shadow-md group hover:shadow-xl transition-transform duration-300 ease-in-out bg-white">
         <img
-            src="https://img.freepik.com/foto-gratis/suite-dormitorio-moderno-clasico-lujo-hotel_105762-1787.jpg"
-            alt="Hotel 1"
+            src={room.imageUrl}
+            alt="Hotel Name"
             width={500}
             height={400}
             className="object-cover w-full h-64"
@@ -28,7 +32,7 @@ export default function CardProduct({ room }: CardRoomProps) {
         />
         <div className="p-4 space-y-4">
             <div className="flex items-center justify-between">
-                <h3 className="text-lg font-semibold text-black">{room.name}</h3>
+                <h3 className="text-lg font-semibold text-black">{room.type} Room</h3>
                 <div className="text-2xl font-bold text-black">${room.price}/night</div>
             </div>
                 <p className={`text-sm ${room.available ? 'text-green-600' : 'text-red-600'} mb-2`}>
@@ -43,7 +47,10 @@ export default function CardProduct({ room }: CardRoomProps) {
             </div>
             <div className="mt-4 md:mt-8 ">
                 <Link to="/roomDetail" >
-                  <Button content="See Availability" className={'inline-block w-full px-12 py-3 text-center'}/>
+                  <Button content="Book now" className={'inline-block w-50 px-12 py-3 text-center mr-2'}/>
+                </Link>
+                <Link to="/roomDetail" >
+                  <ButtonSecondary content="More details" className={'inline-block w-50 px-12 py-3 text-center mt-2'}/>
                 </Link>
             </div>
         </div>            

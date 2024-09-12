@@ -1,17 +1,28 @@
-import { useState } from 'react'
-import CardRoom from '../components/Cards/CardRoom'
+import { useEffect, useState } from 'react'
+
 import SideBarFilter from '../components/Sidebars/SideBarFilter'
 import Header from '../components/Layouts/Header'
 import HeaderBanner from '../components/Layouts/HeaderBanner'
 
+import CardRoom from '../components/Cards/CardRoom'
+import { fetchRooms, RoomDTO } from '../services/roomService'
+import { fetchHotelById, HotelDTO } from '../services/hotelService'
 
+
+export interface RoomWithHotel extends RoomDTO {
+  hotel: HotelDTO;
+}
 
 export default function Product() {
+  //nueva version con datos reales de la base de datos
+  const [roomsWithHotels, setRoomsWithHotels] = useState<RoomWithHotel[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [filters, setFilters] = useState({
     roomTypes: {
-      singleRoom: false,
-      doubleRoom: false,
-      suite: false,
+      Single: false,
+      Double: false,
+      Suite: false,
     },
     priceRange: [0, 500],
     dateRange: {
@@ -21,21 +32,45 @@ export default function Product() {
     availability: false,
     province: '',
   })
-  const rooms = [
-    { id: 1, type: 'singleRoom', name: 'Cozy Single', price: 80, available: true, province: 'Buenos Aires' },
-    { id: 2, type: 'doubleRoom', name: 'Spacious Double', price: 120, available: true, province: 'Córdoba' },
-    { id: 3, type: 'suite', name: 'Luxury Suite', price: 200, available: false, province: 'Mendoza' },
-    { id: 4, type: 'singleRoom', name: 'Economy Single', price: 70, available: true, province: 'Santa Fe' },
-    { id: 5, type: 'doubleRoom', name: 'Family Double', price: 140, available: false, province: 'Tucumán' },
-    { id: 6, type: 'suite', name: 'Presidential Suite', price: 300, available: true, province: 'Buenos Aires' },
-  ]
-  const filteredRooms = rooms.filter(room => 
+
+  useEffect(() => {
+    async function loadRoomsAndHotels() {
+      try {
+        setLoading(true);
+        const rooms = await fetchRooms();
+        
+        const roomsWithHotelsPromises = rooms.map(async (room) => {
+          if (room.hotelId) {
+            const hotel = await fetchHotelById(room.hotelId);
+            return { ...room, hotel } as RoomWithHotel;
+          }
+          return null; // Ignoramos las habitaciones sin hotelId
+        });
+
+        const roomsWithHotelsResult = (await Promise.all(roomsWithHotelsPromises)).filter((room): room is RoomWithHotel => room !== null);
+        setRoomsWithHotels(roomsWithHotelsResult);
+      } catch (err) {
+        setError('Error fetching rooms and hotels');
+        console.error('Error fetching rooms and hotels:', err);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadRoomsAndHotels();
+  }, []);
+
+  const filteredRooms = roomsWithHotels.filter(room => 
     (Object.entries(filters.roomTypes).some(([type, checked]) => checked && room.type === type) || 
      Object.values(filters.roomTypes).every(value => !value)) &&
-    room.price <= filters.priceRange[1] &&
-    (!filters.availability || room.available) &&
-    (!filters.province || room.province === filters.province)
-  )
+    room.pricePerNight <= filters.priceRange[1] &&
+    (!filters.availability || room.availability) &&
+    (!filters.province || room.hotel.province === filters.province)
+  );
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+
   return (
     <div>
         <Header />
@@ -52,8 +87,20 @@ export default function Product() {
                 <section className="container mx-auto max-w-screen-lg">
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-10">
                   {filteredRooms.map(room => (
-                    <CardRoom key={room.id} room={room} />
-                  ))}
+                  <CardRoom 
+                    key={room.id} 
+                    room={{
+                      name: room.roomNumber,
+                      location: room.hotel.location,
+                      province: room.hotel.province,
+                      rating: room.hotel.rating,
+                      type: room.type,
+                      price: room.pricePerNight,
+                      imageUrl: room.image,
+                      available: room.availability
+                    }} 
+                  />
+                ))}
                   </div>
                 </section>
               </main>
