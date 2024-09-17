@@ -18,6 +18,11 @@ export async function fetchUsers(): Promise<UserDTO[]> {
   return response.data as UserDTO[];
 }
 
+export async function getUserById(id: number): Promise<UserDTO> {
+  const response = await api.get(`/api/user/get-user/${id}`);
+  return response.data as UserDTO;
+}
+
 export async function createUser(data: Partial<UserDTO>): Promise<CreateUserResponse> {
   const response = await api.post('/api/user/registration-user', data);
   return response.data as CreateUserResponse;

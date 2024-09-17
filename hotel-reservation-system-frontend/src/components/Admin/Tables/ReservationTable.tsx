@@ -36,7 +36,10 @@ export default function ReservationSection() {
 
   return (
     <div className="bg-white rounded-lg shadow overflow-hidden">
-      <h2 className="block sm:hidden text-2xl font-bold text-gray-500 capitalize p-4 border">Reservations</h2>
+       {/* Header and Button */}
+       <header className="flex items-center justify-between p-4 border-b">
+        <h2 className="text-2xl font-bold text-gray-500 capitalize">Reservations</h2>
+      </header>
       <table className="min-w-full divide-y divide-gray-200">
         <thead className="bg-gray-50">
           <tr>

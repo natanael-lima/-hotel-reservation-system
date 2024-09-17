@@ -2,7 +2,7 @@
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
 export interface HotelDTO {
-    id?: number;
+    id: number;
     name: string;
     location: string;          // Opcional, como en el DTO de Java
     description: string;       // Opcional, como en el DTO de Java
