@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react'
 
-import SideBarFilter from '../components/Sidebars/SideBarFilter'
+import SideBarFilter from '../components/Sidebars/SidebarFilter'
 import Header from '../components/Layouts/Header'
 import HeaderBanner from '../components/Layouts/HeaderBanner'
-
 import CardRoom from '../components/Cards/CardRoom'
 import { fetchRooms, RoomDTO } from '../services/roomService'
 import { fetchHotelById, HotelDTO } from '../services/hotelService'
@@ -82,22 +81,25 @@ export default function Product() {
               <SideBarFilter onFilterChange={setFilters} />
           </aside>
           {/* Columna de Rooms */}
-          <div className="h rounded-lg bg-white shadow-sm  lg:col-span-2">
-            <main className="flex-1 p-4 ">
+          <div className="h rounded-lg lg:col-span-2">
+            <main className="flex-1 p-1 ">
                 <section className="container mx-auto max-w-screen-lg">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-10">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-1 gap-10">
                   {filteredRooms.map(room => (
                   <CardRoom 
                     key={room.id} 
                     room={{
-                      name: room.roomNumber,
-                      location: room.hotel.location,
-                      province: room.hotel.province,
-                      rating: room.hotel.rating,
+                      id: room.id,
+                      roomNumber: room.roomNumber,
                       type: room.type,
-                      price: room.pricePerNight,
-                      imageUrl: room.image,
-                      available: room.availability
+                      pricePerNight: room.pricePerNight,
+                      availability: room.availability,
+                      description: room.description,
+                      capacity: room.capacity,
+                      image: room.image,
+                      amenities: room.amenities,
+                      hotelId: room.hotelId,
+                      hotel: room.hotel
                     }} 
                   />
                 ))}

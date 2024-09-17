@@ -4,15 +4,29 @@ import { useEffect, useState } from "react"
 import { useAuth } from '../../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { getCurrentUser, UserDTO } from '../../services/userService';
-
 import { IoIosLogOut } from "react-icons/io";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { GrConfigure } from "react-icons/gr";
 import { FiChevronUp,FiChevronDown } from "react-icons/fi";
-
+import ProfileEditModal from "./ProfileEditModal";
+import ChangePasswordModal from "./ChangePasswordModal";
+import { RiSecurePaymentLine  } from "react-icons/ri";
+import { TbCalendarCheck } from "react-icons/tb";
 
 export default function ProfileCircule() {
-   const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpenPass, setIsModalOpenPass] = useState(false);
+
+  const openModalPass = () => setIsModalOpenPass(true);
+  const closeModalPass = () => setIsModalOpenPass(false);
+
+  const openModal = () => {setIsModalOpen(true);};
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+
    const { logout } = useAuth();
    const navigate = useNavigate();
  
@@ -66,27 +80,49 @@ export default function ProfileCircule() {
         <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
           <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
             <button
+              onClick={openModal} // Abre el modal cuando se hace clic en el botón
               className="w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
               role="menuitem"
             >
               <GrConfigure size={24} className="mr-3 h-5 w-5 text-gray-400"/>
               Configuration
             </button>
+              {/* Renderiza el modal y le pasa las funciones para abrir y cerrar */}
+              <ProfileEditModal isOpen={isModalOpen} closeModal={closeModal} />
             <button
+              onClick={openModalPass}
               className="w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
               role="menuitem"
             >
               <RiLockPasswordLine size={24} className="mr-3 h-5 w-5 text-gray-400"/>
               Change Password
             </button>
+            {/* Modal */}
+              <ChangePasswordModal isOpen={isModalOpenPass} closeModal={closeModalPass} />
               <button
-                className="w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                role="menuitem"
-                onClick={handleLogout}
+              className="w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+              role="menuitem"
+              onClick={handleLogout}
               >
-                <IoIosLogOut size={24} className="mr-3 h-5 w-5 text-gray-400"/>
+              <TbCalendarCheck size={24} className="mr-3 h-5 w-5 text-gray-400"/>
+                My Reservations
+            </button>
+            <button
+              className="w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+              role="menuitem"
+              onClick={handleLogout}
+              >
+              <RiSecurePaymentLine  size={24} className="mr-3 h-5 w-5 text-gray-400"/>
+                My Payments
+            </button>  
+            <button
+              className="w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+              role="menuitem"
+              onClick={handleLogout}
+              >
+              <IoIosLogOut size={24} className="mr-3 h-5 w-5 text-gray-400"/>
                 Logout
-              </button>
+            </button>
           </div>
         </div>
       )}

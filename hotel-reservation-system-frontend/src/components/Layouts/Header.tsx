@@ -55,7 +55,7 @@ export default function Header() {
           {isMenuOpen && (
             <button
               onClick={toggleMenu}
-              className="absolute top-4 right-4 p-2 text-gray-300/70 md:hidden"
+              className="absolute top-4 right-4 p-2 text-gray-500/70 md:hidden"
             >
               <IoMdClose className="h-6 w-6" />
             </button>

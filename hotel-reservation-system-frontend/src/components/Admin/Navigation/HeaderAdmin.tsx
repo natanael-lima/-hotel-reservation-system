@@ -1,6 +1,6 @@
 
 import React from 'react';
-import ProfileCircleAdmin from '../../Profile/ProfileCircleAdmin';
+import ProfileCircleAdmin from '../Profile/ProfileCircleAdmin';
 
 
 interface HeaderProps {
@@ -9,7 +9,7 @@ interface HeaderProps {
   isMobileMenuOpen: boolean;
 }
 
-export default function HeaderAdmin({ activeTab, toggleMobileMenu, isMobileMenuOpen }:HeaderProps) {
+export default function HeaderAdmin({ toggleMobileMenu, isMobileMenuOpen }:HeaderProps) {
   
   return (
     <header className="flex items-center justify-between h-16 px-6 bg-white border-b">
@@ -27,7 +27,7 @@ export default function HeaderAdmin({ activeTab, toggleMobileMenu, isMobileMenuO
             </svg>
           )}
       </button>
-      <h2 className="hidden lg:block lg:text-2xl font-semibold capitalize">{activeTab}</h2>
+      <h2 className="hidden lg:block lg:text-2xl font-semibold capitalize"></h2>
       <div className="flex items-center justify-between">
         <ProfileCircleAdmin/>
       </div>

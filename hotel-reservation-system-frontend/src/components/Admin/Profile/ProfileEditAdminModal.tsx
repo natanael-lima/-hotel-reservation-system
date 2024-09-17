@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { getCurrentUser, UserDTO } from '../../services/userService';
+import { getCurrentUser, UserDTO } from '../../../services/userService';
+
+
 interface ModalProps {
     isOpen: boolean;
     closeModal: () => void;
   }
   
-
 export default function EditProfile({ isOpen, closeModal }:ModalProps) {
     const [user, setUser] = useState<UserDTO | null>(null);
     const [fullName, setFullName] = useState('');

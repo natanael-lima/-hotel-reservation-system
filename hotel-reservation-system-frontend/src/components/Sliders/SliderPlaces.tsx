@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import CardPlace from '../Cards/CardPlace';
 
 const places = [
-    { id: 1, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXMEQhe2S6knxEYo4uGxPxrrgJRyroPJ6L-g&s', province: 'Buenos Aires', availability: 5 },
+    { id: 1, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXMEQhe2S6knxEYo4uGxPxrrgJRyroPJ6L-g&s', province: 'CABA', availability: 5 },
     { id: 2, image: 'https://media.traveler.es/photos/61376210c4f3d95786667be3/1:1/w_1114,h_1114,c_limit/198677.jpg', province: 'Córdoba', availability: 3 },
     { id: 3, image: 'https://media.ambito.com/p/0842947a0f7a8828780c4ddab04ad998/adjuntos/239/imagenes/039/854/0039854354/santa-fejpg.jpg', province: 'Santa Fe', availability: 7 },
     { id: 4, image: 'https://sentimendoza.com.ar/medios/Mendoza-1024x687.jpg', province: 'Mendoza', availability: 8 },
