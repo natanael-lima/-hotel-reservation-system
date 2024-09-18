@@ -23,9 +23,9 @@ function App() {
             <Route path="/admin/dashboard" element={<AdminPanel />} />
           </Route>
           <Route path="/rooms" element={<Room />} />
+          <Route path="/roomDetail/:id" element={<RoomDetails />} />
           <Route path="/bookings" element={<Bookings />} />
           <Route path="/about" element={<About />} />
-          <Route path="/roomDetail" element={<RoomDetails />} />
         </Routes>
       </Router>
     </AuthProvider>

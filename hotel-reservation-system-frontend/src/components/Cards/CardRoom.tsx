@@ -64,7 +64,7 @@ export default function CardProduct({ room }: CardRoomProps) {
             {isModalOpen && (
               <ConfirmBookingModal isOpen={isModalOpen} closeModal={closeModal} />
             )}
-            <Link to="/roomDetail">
+            <Link to={`/roomDetail/${room.id}`} key={room.id}>
               <ButtonSecondary
                     content="More details"
                     className="inline-block w-50 px-12 py-3 text-center" onClick={function (): void {
