@@ -6,8 +6,10 @@ import Dashboard from '../components/Admin/Dashboard/Dashboard';
 import HeaderAdmin from '../components/Admin/Navigation/HeaderAdmin';
 import Sidebar from '../components/Admin/Navigation/Sidebar';
 import PaymentSection from '../components/Admin/Tables/PaymentTable';
-import ReservationSection from '../components/Admin/Tables/ReservationTable';
+import ReservationSection from '../components/Admin/Tables/BookingTable';
 import ReviewSection from '../components/Admin/Tables/ReviewTable';
+import Settings from '../components/Admin/Tables/Settings';
+import PrivilegedUserTable from '../components/Admin/Tables/PrivilegedUserTable';
 
 
 export default function AdminPanel() {
@@ -36,9 +38,11 @@ export default function AdminPanel() {
           {activeTab === 'hotels' && <HotelSection />}
           {activeTab === 'rooms' && <RoomSection />}
           {activeTab === 'users' && <UserSection />}
-          {activeTab === 'reservations' && <ReservationSection/>}
+          {activeTab === 'usersq' && <PrivilegedUserTable />}
+          {activeTab === 'bookings' && <ReservationSection/>}
           {activeTab === 'payments' && <PaymentSection />}
           {activeTab === 'reviews' && <ReviewSection />}
+          {activeTab === 'setting' && <Settings />}
           
         </main>
       </div>

@@ -107,7 +107,7 @@ export default function RoomDetails() {
                   </div>
               </div>
               <div className="col-span-1 md:col-span-3 mt-4">
-                  <Button content="Reserve" className={'w-full text-center'} onClick={function (): void {
+                  <Button content="Book" className={'w-full text-center'} onClick={function (): void {
                 throw new Error('Function not implemented.')
               } }/>
               </div>

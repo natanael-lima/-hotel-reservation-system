@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Button from '../Buttons/Button'
 import ButtonSecondary from '../Buttons/ButtonSecondary';
@@ -6,16 +6,20 @@ import { GrCapacity, GrLocation } from "react-icons/gr";
 import { MdEventAvailable } from "react-icons/md";
 import {  } from "react-icons/gr";
 import { RoomWithHotel } from '../Sliders/SliderRoomWithHotel';
-// CardSlider.tsx
-
+import ConfirmBookingModal from '../Modals/ConfirmBookingModal';
 
 type CardRoomProps = {
     room: RoomWithHotel
 }
-  
+
 export default function CardProduct({ room }: CardRoomProps) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
   return (
-    <article className="relative overflow-hidden rounded-lg border border-orange-700/10 shadow-sm group hover:shadow-xl transition-transform duration-300 ease-in-out bg-white">
+    <article className="relative overflow-hidden rounded-lg border border-orange-200/10 shadow-sm group hover:shadow-xl transition-transform duration-300 ease-in-out bg-white">
   <div className="grid grid-cols-1 md:grid-cols-3 gap-0">
     <figure className="bg-red-200/5">
       <img
@@ -49,13 +53,17 @@ export default function CardProduct({ room }: CardRoomProps) {
         <footer className="flex items-center justify-between">
           <p className="text-white p-1 rounded-tr-lg bg-teal-600"><span className='text-semibold px-1 text-1xl'>{room.hotel.rating}</span></p>
           <div className="flex space-x-2">
-            <Link to="/roomDetail">
+    
               <Button
-                    content="Book now"
-                    className="inline-block w-50 px-12 py-3 text-center" onClick={function (): void {
-                      throw new Error('Function not implemented.');
-                    } }              />
-            </Link>
+                content="Book now"
+                className="inline-block w-50 px-12 py-3 text-center"
+                onClick={openModal}
+              />
+   
+            {/* Render the modal only if it's open */}
+            {isModalOpen && (
+              <ConfirmBookingModal isOpen={isModalOpen} closeModal={closeModal} />
+            )}
             <Link to="/roomDetail">
               <ButtonSecondary
                     content="More details"

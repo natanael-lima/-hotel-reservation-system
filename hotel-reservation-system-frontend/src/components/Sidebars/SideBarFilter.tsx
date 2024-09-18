@@ -58,8 +58,8 @@ export default function SideBarFilter({ onFilterChange }: SideBarFilterProps){
 
   return (
     
-    <aside className="w-full md:w-64  p-4 rounded-lg">
-      <h2 className="text-xl font-semibold mb-4 flex items-center">
+    <aside className="w-full md:w-64 p-4 rounded-lg">
+      <h2 className="text-xl font-semibold mb-5 flex items-center">
         Filters
       </h2>
       {/* Room Type Filter */}

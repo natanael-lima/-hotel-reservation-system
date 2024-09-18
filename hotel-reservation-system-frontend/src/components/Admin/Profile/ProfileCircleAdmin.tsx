@@ -86,7 +86,7 @@ export default function ProfileCircule() {
               role="menuitem"
             >
               <GrConfigure size={24} className="mr-3 h-5 w-5 text-gray-400"/>
-              Configuration
+              Profile
             </button>
               {/* Renderiza el modal y le pasa las funciones para abrir y cerrar */}
               <ProfileEditAdminModal isOpen={isModalOpen} closeModal={closeModal} />

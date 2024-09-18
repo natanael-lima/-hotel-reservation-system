@@ -24,7 +24,7 @@ export default function LoginAdmin() {
             
 
             <form onSubmit={handleLogin} className="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8 bg-gray-100">
-            <h1 className="text-center text-2xl font-bold text-indigo-600 sm:text-3xl">Admin Control Panel</h1>
+            <h1 className="text-center text-2xl font-bold text-slate-600 sm:text-3xl">ADMIN LOGIN PANEL</h1>
 
             <p className="mx-auto mt-4 max-w-md text-center text-gray-400">
             Access the administrative control panel to manage user activities, oversee content, and handle system settings.
@@ -67,7 +67,7 @@ export default function LoginAdmin() {
 
             <button
                 type="submit"
-                className="block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white"
+                className="block w-full rounded-lg bg-slate-600 hover:bg-slate-700 px-5 py-3 text-sm font-medium text-white"
             >
                Access
             </button>

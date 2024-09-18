@@ -9,6 +9,7 @@ import AdminPanel from './pages/DashboardPage';
 import LoginAdmin from './pages/AdminLoginPage';
 import AuthProvider from './contexts/AuthContext';
 import { ProtectedRoute } from './routes/ProtectedRoute';
+import Bookings from './pages/Bookings';
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
             <Route path="/admin/dashboard" element={<AdminPanel />} />
           </Route>
           <Route path="/rooms" element={<Room />} />
+          <Route path="/bookings" element={<Bookings />} />
           <Route path="/about" element={<About />} />
           <Route path="/roomDetail" element={<RoomDetails />} />
         </Routes>
