@@ -135,7 +135,7 @@ export default function Search() {
                     </div>
                     )}
                 </div>
-                    <Link to="/rooms" className="shrink-0 rounded-md border border-orange-600 bg-orange-600 px-20 py-2 text-sm font-medium text-white transition hover:bg-transparent hover:text-orange-600 focus:outline-none focus:ring focus:ring-orange-400 active:text-orange-800">
+                    <Link to="/rooms" className="shrink-0 rounded-md border border-orange-600 bg-orange-600 px-20 py-2 text-sm font-medium text-white transition hover:bg-orange-700 hover:text-orange-100 focus:outline-none focus:ring focus:ring-orange-400 active:text-orange-800">
                         Search
                     </Link>
                 </div>        

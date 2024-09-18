@@ -4,11 +4,11 @@ const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 export interface HotelDTO {
     id: number;
     name: string;
-    location: string;          // Opcional, como en el DTO de Java
-    description: string;       // Opcional, como en el DTO de Java
-    rating: number;            // Opcional, como en el DTO de Java
-    image: string;            // Opcional, como en el DTO de Java
-    province: string;            // Opcional, como en el DTO de Java
+    location: string;          
+    description: string;       
+    rating: number;            
+    image: string;       
+    province: string;    
     roomIds?: number[];         // Opcional, como en el DTO de Java, lista de IDs de habitaciones
     reviews?: ReviewDTO[];      // Opcional, como en el DTO de Java, lista de reseñas (asegúrate de definir ReviewDTO también)
   }

@@ -41,7 +41,7 @@ export default function CardHotelSlider({ name, price, location, imageUrl,rating
                 </svg>
             <span  >{location}</span>
             </div>
-            <div className="text-sm text-gray-500">Desde <strong className="font-bold text-black">$ {price} </strong> 
+            <div className="text-sm text-gray-500">From  <strong className="font-bold text-black">$ {price} </strong> 
             </div>
         </div>
         </Link>

@@ -10,7 +10,7 @@ export interface RoomDTO {
   capacity: number;
   image: string;
   amenities: string[];
-  hotelId?: number;  // Opcional
+  hotelId: number;  // Opcional
 }
 
 interface CreateRoomResponse {
