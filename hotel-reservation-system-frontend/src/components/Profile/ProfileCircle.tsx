@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { useAuth } from '../../contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { getCurrentUser, UserDTO } from '../../services/userService';
 import { IoIosLogOut } from "react-icons/io";
 import { RiLockPasswordLine } from "react-icons/ri";
@@ -10,7 +10,6 @@ import { GrConfigure } from "react-icons/gr";
 import { FiChevronUp,FiChevronDown } from "react-icons/fi";
 import ProfileEditModal from "./ProfileEditModal";
 import ChangePasswordModal from "./ChangePasswordModal";
-import { RiSecurePaymentLine  } from "react-icons/ri";
 import { TbCalendarCheck } from "react-icons/tb";
 
 export default function ProfileCircule() {
@@ -85,7 +84,7 @@ export default function ProfileCircule() {
               role="menuitem"
             >
               <GrConfigure size={24} className="mr-3 h-5 w-5 text-gray-400"/>
-              Configuration
+              Profile
             </button>
               {/* Renderiza el modal y le pasa las funciones para abrir y cerrar */}
               <ProfileEditModal isOpen={isModalOpen} closeModal={closeModal} />
@@ -99,22 +98,15 @@ export default function ProfileCircule() {
             </button>
             {/* Modal */}
               <ChangePasswordModal isOpen={isModalOpenPass} closeModal={closeModalPass} />
+            <Link to="/bookings">
               <button
-              className="w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-              role="menuitem"
-              onClick={handleLogout}
+                className="w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                role="menuitem"
               >
-              <TbCalendarCheck size={24} className="mr-3 h-5 w-5 text-gray-400"/>
-                My Reservations
-            </button>
-            <button
-              className="w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-              role="menuitem"
-              onClick={handleLogout}
-              >
-              <RiSecurePaymentLine  size={24} className="mr-3 h-5 w-5 text-gray-400"/>
-                My Payments
-            </button>  
+                <TbCalendarCheck size={24} className="mr-3 h-5 w-5 text-gray-400" />
+                Bookings
+              </button>
+            </Link>
             <button
               className="w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
               role="menuitem"

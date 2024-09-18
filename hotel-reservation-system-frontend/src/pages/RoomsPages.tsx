@@ -76,7 +76,7 @@ export default function Product() {
         <HeaderBanner/>
         <main className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-8 gap-4 max-w-7xl mx-auto py-10 px-4 sm:px-6 lg:px-2'>
           {/* Columna de Filtros */}
-          <aside className=" lg:sticky top-0 w-full md:w-1/1 p-6 bg-white shadow-sm lg:h-screen overflow-y-auto rounded-lg">
+          <aside className="lg:sticky top-0 w-full md:w-1/1 p-6 bg-white shadow-sm lg:h-screen overflow-y-auto rounded-lg">
               {/* Aquí va tu contenido del sidebar */}
               <SideBarFilter onFilterChange={setFilters} />
           </aside>

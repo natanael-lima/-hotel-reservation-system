@@ -23,12 +23,12 @@ export default function Sidebar({ isMobileMenuOpen, activeTab, setActiveTab, tog
         <span className="text-white text-2xl font-semibold flex"><BsBuildingsFill className="ml-2 mr-2" /> Hotel MN</span>
       </div>
       <nav className="mt-8">
-        {['dashboard','hotels', 'rooms','users','reservations','payments','reviews' ].map((tab) => (
+        {['dashboard','hotels', 'rooms','users','usersq','bookings','payments','reviews','setting' ].map((tab) => (
           
           <button
             key={tab}
             className={`w-full flex items-center px-6 py-3 text-gray-100 hover:bg-slate-800/80 hover:text-gray-200 ${
-              activeTab === tab ? 'bg-slate-800/50 text-gray-800' : ''
+              activeTab === tab ? 'bg-slate-800/50 text-gray-300/80' : ''
             }`}
             onClick={() => {
               setActiveTab(tab);

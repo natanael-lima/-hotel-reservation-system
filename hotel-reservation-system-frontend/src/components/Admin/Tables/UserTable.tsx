@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import ButtonGroup from '../../Buttons/ButtonGroup'
 import { fetchUsers, UserDTO } from '../../../services/userService';
-import StatusBadge from '../../Buttons/StatusBadge';
 import UserFormEdit from '../Forms/UserFormEdit';
-import { IoAddOutline } from 'react-icons/io5';
+import { FaCheck } from 'react-icons/fa';
+import ButtonStatusBadge from '../../Buttons/ButtonStatusBadge';
 
 // Función para formatear la fecha usando JavaScript nativo
 const formatDate = (dateString: string): string => {
@@ -54,21 +54,6 @@ export default function UserSection() {
        {/* Header and Button */}
        <header className="flex items-center justify-between p-4 border-b">
         <h2 className="text-2xl font-bold text-gray-500 capitalize">Users</h2>
-        <button
-          className="
-            flex items-center gap-2
-            rounded-md border border-green-300
-            bg-green-200 px-4 py-2
-            text-green-800 font-semibold
-            hover:bg-green-300 hover:border-green-400
-            focus:outline-none focus:ring-2 focus:ring-green-400
-            transition duration-200 ease-in-out
-          "
-          
-        >
-          <IoAddOutline className="text-xl" />
-          Add New
-        </button>
       </header>
       <table className="min-w-full divide-y divide-gray-200">
         <thead className="bg-gray-50">
@@ -77,9 +62,8 @@ export default function UserSection() {
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Username</th>
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">FullName</th>
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">CreatedAt</th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Verfied</th>
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
@@ -95,15 +79,13 @@ export default function UserSection() {
               <td className="px-6 py-4 whitespace-nowrap">{user.username}</td>
               <td className="px-6 py-4 whitespace-nowrap">{user.fullName}</td>
               <td className="px-6 py-4 whitespace-nowrap">{formatDate(user.createdAt)}</td>
-              <td className="px-6 py-4 whitespace-nowrap">{user.role}</td>
               <td className="px-6 py-4 whitespace-nowrap">
-                    <StatusBadge status="Active" />
+                    <ButtonStatusBadge status="Active" />
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <ButtonGroup
-                  onClick2={() => openEditModal(user.id)}
-                  onClick3={() => console.log('Button 3 clicked')}
-                />
+                <span className="inline-flex items-center px-2 py-1 bg-green-600 text-white rounded-lg border border-green-600">
+                  <FaCheck className="w-3 h-3 " />
+                </span>
               </td>
             </tr>
           ))}
