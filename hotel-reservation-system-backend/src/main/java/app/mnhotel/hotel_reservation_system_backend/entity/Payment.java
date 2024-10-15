@@ -4,8 +4,11 @@ import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import app.mnhotel.hotel_reservation_system_backend.enums.PaymentStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -35,8 +38,9 @@ public class Payment {
 	@Column(name="payment_date")
 	private LocalDateTime paymentDate;
 	
-	@Column(name="status")
-	private String status;
+	@Column(name = "status")
+	@Enumerated(EnumType.STRING)  // O EnumType.ORDINAL si prefieres almacenar el índice
+	private PaymentStatus status;
 
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "reservation_id")
