@@ -117,7 +117,7 @@ public class PaymentServiceImp implements PaymentService {
 	}
 
 	@Override
-	public PaymentDTO getPaymentDetails(String paymentId) throws Exception {
+	public PaymentDTO getPaymentDetails(Long paymentId) throws Exception {
 		Long id = Long.valueOf(paymentId);
 	    // Obtener el pago por ID
 	    Payment payment = paymentRepository.findById(id)
@@ -128,7 +128,7 @@ public class PaymentServiceImp implements PaymentService {
 	}
 
 	@Override
-	public void cancelPayment(String paymentId) throws Exception {
+	public void cancelPayment(Long paymentId) throws Exception {
 		// TODO Auto-generated method stub
 		  Long id = Long.valueOf(paymentId);
 		  // Verificar si el pago existe
@@ -143,7 +143,7 @@ public class PaymentServiceImp implements PaymentService {
 	}
 
 	@Override
-	public List<PaymentDTO> listPayments() throws Exception {
+	public List<PaymentDTO> getAllPayments() throws Exception {
 		// TODO Auto-generated method stub
 		// Obtener todos los pagos y convertir a DTO
 	    return paymentRepository.findAll().stream()

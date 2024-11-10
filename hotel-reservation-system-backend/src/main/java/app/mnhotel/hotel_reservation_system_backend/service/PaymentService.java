@@ -10,13 +10,13 @@ public interface PaymentService {
     public PaymentDTO createPayment(PaymentDTO paymentDTO) throws Exception;
 
     // Método para obtener detalles de un pago existente
-    public PaymentDTO getPaymentDetails(String paymentId) throws Exception;
+    public PaymentDTO getPaymentDetails(Long paymentId) throws Exception;
 
     // Método para cancelar un pago
-    public void cancelPayment(String paymentId) throws Exception;
+    public void cancelPayment(Long paymentId) throws Exception;
 
     // Método para listar todos los pagos realizados
-    public List<PaymentDTO> listPayments() throws Exception;
+    public List<PaymentDTO> getAllPayments() throws Exception;
 
     // Método para verificar el estado de un pago
     //public PaymentStatusDTO checkPaymentStatus(String paymentId) throws Exception;
