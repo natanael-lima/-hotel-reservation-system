@@ -19,8 +19,8 @@ public class ReviewDTO {
     private LocalDateTime createdAt;
     
     // Información del usuario que escribió la reseña
-    private UserDTO user;
+    private Long userId;
     
     // Información del hotel sobre el que se escribió la reseña
-    private HotelDTO hotel;
+    private Long hotelId;
 }
